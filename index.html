@@ -159,12 +159,12 @@
       // Send the message to the API
       const payload = {
         query_text: message,
-        index_name: "transcriptindex",
+        index_name: "transcriptindex-index",
         namespace_id: "1roofsolution",
         layer_id: "1roofsolution"
       };
 
-      fetch('http://127.0.0.1:5000/api/query', {
+      fetch('https://pgaytvw324wsfiatqkplfmdgxa0jbuon.lambda-url.us-east-1.on.aws/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

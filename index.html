@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+
 <!-- HTML -->
 <div id="chat-widget">
   <div id="chat-circle">
@@ -133,6 +135,10 @@
     chatCircle.addEventListener('click', function () {
       chatContainer.style.display = 'flex';
       chatCircle.style.display = 'none';
+      const sessionID = uuidv4();
+      // Use the sessionID in your API requests or other logic
+      console.log('Session ID:', sessionID);
+      
     });
 
     closeButton.addEventListener('click', function () {

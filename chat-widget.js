@@ -8,10 +8,12 @@ window.addEventListener('DOMContentLoaded', function () {
   const chatContainer = document.getElementById('chat-container');
   const chatMessages = document.getElementById('chat-messages');
 
+  let sessionID;
+
   chatCircle.addEventListener('click', function () {
     chatContainer.style.display = 'flex';
     chatCircle.style.display = 'none';
-    const sessionID = generateUUID();
+    sessionID = generateUUID();
     // Use the sessionID in your API requests or other logic
     console.log('Session ID:', sessionID);
   });
@@ -51,7 +53,8 @@ window.addEventListener('DOMContentLoaded', function () {
       query_text: message,
       index_name: "transcriptindex-index",
       namespace_id: "1roofsolution",
-      layer_id: "1roofsolution"
+      layer_id: "1roofsolution",
+      sessionID: sessionID
     };
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {

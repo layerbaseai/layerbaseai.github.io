@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function () {
       index_name: "transcriptindex-index",
       namespace_id: "1roofsolution",
       layer_id: "1roofsolution",
-      sessionID: sessionID
+      session_id: sessionID
     };
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {

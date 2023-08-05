@@ -124,12 +124,12 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   bookCallButton.addEventListener('click', function () {
-  if (callBookingForm.style.display === 'block') {
-    callBookingForm.style.display = 'none';
-  } else {
-    callBookingForm.style.display = 'block';
-  }
-});
+    if (callBookingForm.style.display === 'block') {
+      callBookingForm.style.display = 'none';
+    } else {
+      callBookingForm.style.display = 'block';
+    }
+  });
 
   callFormInputs.addEventListener('submit', function (event) {
     event.preventDefault();

@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', function () {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Token": "0157399e3f2bc6d258c3c377e17a3de2"
+        'Token': '0157399e3f2bc6d258c3c377e17a3de2'
       },
       body: JSON.stringify(lead_payload)
     })

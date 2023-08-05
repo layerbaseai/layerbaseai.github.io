@@ -151,9 +151,10 @@ window.addEventListener('DOMContentLoaded', function () {
     fetch('https://reachuprewards.bubbleapps.io/version-test/api/1.1/obj/lead', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Token': '0157399e3f2bc6d258c3c377e17a3de2'
-      },
+        'X-API-KEY': 'fef1a3184c7c2eeea7aa92f94f1f1d04',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
       body: JSON.stringify(lead_payload)
     })
       .then(response => response.json())

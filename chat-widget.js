@@ -129,6 +129,8 @@ window.addEventListener('DOMContentLoaded', function () {
     } else {
       callBookingForm.style.display = 'block';
     }
+
+    console.log("button clicked")
   });
 
   callFormInputs.addEventListener('submit', function (event) {

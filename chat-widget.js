@@ -122,24 +122,25 @@ window.addEventListener('DOMContentLoaded', function () {
 
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
-  const callForm = document.getElementById('call-form');
+  const callFormInputs = document.getElementById('call-form-inputs');
 
   bookCallButton.addEventListener('click', function () {
     callBookingForm.style.display = 'block';
   });
 
-  callForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting and refreshing the page
+  callFormInputs.addEventListener('submit', function (event) {
+    event.preventDefault();
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
 
-    // Do something with the collected data, such as sending it to a server
-    console.log('Name:', name);
-    console.log('Phone:', phone);
-    console.log('Email:', email);
+    console.log(name)
+    console.log(phone)
+    console.log(email)
 
-    callBookingForm.style.display = 'none'; // Hide the form after submission
+    callBookingForm.style.display = 'none';
   });
+
+  // ... Remaining code ...
 
 });

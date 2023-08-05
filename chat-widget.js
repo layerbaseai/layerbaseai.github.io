@@ -7,6 +7,9 @@ window.addEventListener('DOMContentLoaded', function () {
   const sendButton = document.getElementById('send-button');
   const chatContainer = document.getElementById('chat-container');
   const chatMessages = document.getElementById('chat-messages');
+  const bookCallButton = document.getElementById('book-call-button');
+  const callBookingForm = document.getElementById('call-booking-form');
+  const callFormInputs = document.getElementById('call-form-inputs');
 
   let sessionID;
 
@@ -120,10 +123,6 @@ window.addEventListener('DOMContentLoaded', function () {
     typingIndicator.style.display = 'none';
   }
 
-  const bookCallButton = document.getElementById('book-call-button');
-  const callBookingForm = document.getElementById('call-booking-form');
-  const callFormInputs = document.getElementById('call-form-inputs');
-
   bookCallButton.addEventListener('click', function () {
     callBookingForm.style.display = 'block';
     console.log("book call clicked")
@@ -141,7 +140,5 @@ window.addEventListener('DOMContentLoaded', function () {
 
     callBookingForm.style.display = 'none';
   });
-
-  // ... Remaining code ...
 
 });

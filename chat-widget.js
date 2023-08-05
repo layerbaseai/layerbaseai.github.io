@@ -119,4 +119,27 @@ window.addEventListener('DOMContentLoaded', function () {
     const typingIndicator = document.getElementById('typing-indicator');
     typingIndicator.style.display = 'none';
   }
+
+  const bookCallButton = document.getElementById('book-call-button');
+  const callBookingForm = document.getElementById('call-booking-form');
+  const callForm = document.getElementById('call-form');
+
+  bookCallButton.addEventListener('click', function () {
+    callBookingForm.style.display = 'block';
+  });
+
+  callForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the form from submitting and refreshing the page
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    // Do something with the collected data, such as sending it to a server
+    console.log('Name:', name);
+    console.log('Phone:', phone);
+    console.log('Email:', email);
+
+    callBookingForm.style.display = 'none'; // Hide the form after submission
+  });
+
 });

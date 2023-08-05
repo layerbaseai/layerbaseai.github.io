@@ -172,5 +172,4 @@ window.addEventListener('DOMContentLoaded', function () {
 
     callBookingForm.style.display = 'none';
   });
-
 });

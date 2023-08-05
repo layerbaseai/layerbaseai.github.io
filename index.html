@@ -165,23 +165,24 @@
       <button id="book-call-button">Book Call</button>
       <input type="text" id="message-input" placeholder="Type your message..." />
       <button id="send-button">Send</button>
+      <div id="call-booking-form" style="display: none;">
+        <h3>Book a Call</h3>
+        <form id="call-form-inputs">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+    
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" required>
+    
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+    
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-  <div id="call-booking-form" style="display: none;">
-    <h3>Book a Call</h3>
-    <form id="call-form-inputs">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
 
-      <label for="phone">Phone:</label>
-      <input type="tel" id="phone" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
-
-      <button type="submit">Submit</button>
-    </form>
-  </div>
 
 
   <!-- Include the chat widget JavaScript -->

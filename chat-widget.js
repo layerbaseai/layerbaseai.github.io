@@ -124,18 +124,47 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   bookCallButton.addEventListener('click', function () {
-    if (callBookingForm.style.display === 'block') {
-      callBookingForm.style.display = 'none';
-    } else {
-      callBookingForm.style.display = 'block';
-    }
-  });
+  if (callBookingForm.style.display === 'block') {
+    callBookingForm.style.display = 'none';
+  } else {
+    callBookingForm.style.display = 'block';
+  }
+});
 
   callFormInputs.addEventListener('submit', function (event) {
     event.preventDefault();
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
+
+    // Send the message to the API
+    const lead_payload = {
+      name_text: name,
+      phone_text: phone,
+      email_text: email,
+      chat_history_text: ""
+    };
+
+
+    fetch('https://reachuprewards.bubbleapps.io/version-test/api/1.1/obj/lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Token": "0157399e3f2bc6d258c3c377e17a3de2"
+      },
+      body: JSON.stringify(lead_payload)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Process the API response as needed
+        console.log(data);
+
+        appendMessage("your information has been sent", "url", 'response');
+      })
+      .catch(error => {
+        // Handle any errors that occur during the API request
+        console.error('Error:', error);
+      });
 
     console.log(name)
     console.log(phone)

@@ -124,8 +124,11 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   bookCallButton.addEventListener('click', function () {
-    callBookingForm.style.display = 'block';
-    console.log("book call clicked")
+    if (callBookingForm.style.display === 'block') {
+      callBookingForm.style.display = 'none';
+    } else {
+      callBookingForm.style.display = 'block';
+    }
   });
 
   callFormInputs.addEventListener('submit', function (event) {

@@ -151,7 +151,6 @@ window.addEventListener('DOMContentLoaded', function () {
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/storeInfo', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
       body: JSON.stringify(lead_payload)

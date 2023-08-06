@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function () {
       name_text: name,
       phone_text: phone,
       email_text: email,
-      chat_history_text: ""
+      session_id: sessionID
     };
 
 

@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', function () {
             border-radius: 5px;
             overflow: hidden;
             transition: height 0.3s ease;
+            z-index: 10000000
           }
       
           #chat-circle {
@@ -70,6 +71,7 @@ window.addEventListener('DOMContentLoaded', function () {
             padding: 10px;
             overflow-y: auto;
             border: 1px solid #ccc;
+            background: white
           }
       
           #message-input {

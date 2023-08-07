@@ -218,8 +218,9 @@ window.addEventListener('DOMContentLoaded', function () {
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
-  const variable1 = currentScriptTag.getAttribute('data-variable1');
-  const variable2 = currentScriptTag.getAttribute('data-variable1');
+  var scriptTag = document.getElementById('chat-widget-script');
+  var variable1 = scriptTag.getAttribute('data-variable1');
+  var variable2 = scriptTag.getAttribute('data-variable2');
 
 
   let sessionID;

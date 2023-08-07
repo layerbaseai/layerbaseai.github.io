@@ -219,6 +219,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
   const variable1 = script.getAttribute('data-variable1');
+  const variable2 = script.getAttribute('data-variable2');
 
 
   let sessionID;
@@ -267,7 +268,8 @@ window.addEventListener('DOMContentLoaded', function () {
       index_name: "transcriptindex-index",
       namespace_id: variable1,
       layer_id: variable1,
-      session_id: sessionID
+      session_id: sessionID,
+      company_type: variable2
     };
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {

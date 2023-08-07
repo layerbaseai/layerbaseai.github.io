@@ -189,10 +189,7 @@ window.addEventListener('DOMContentLoaded', function () {
           </div>
         </div>
       
-      
-      
-        <!-- Include the chat widget JavaScript -->
-        <script src="/chat-widget.js"></script>
+    
       </body>
       
       </html>

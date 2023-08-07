@@ -218,8 +218,8 @@ window.addEventListener('DOMContentLoaded', function () {
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
-  const variable1 = script.getAttribute('data-variable1');
-  const variable2 = script.getAttribute('data-variable2');
+  var variable1 = script.getAttribute('data-variable1');
+  var variable2 = script.getAttribute('data-variable2');
 
 
   let sessionID;

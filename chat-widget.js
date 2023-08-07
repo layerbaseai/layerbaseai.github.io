@@ -111,7 +111,7 @@ window.addEventListener('DOMContentLoaded', function () {
       
           /* Style for the book call */
           #book-call-button {
-            width: 25%;
+            width: 40%;
             align-self: flex-end;
           }
       
@@ -170,7 +170,7 @@ window.addEventListener('DOMContentLoaded', function () {
             <div id="typing-indicator" style="display: none;">
               <div class="spinner"></div>
             </div>
-            <button id="book-call-button">Contact Human</button>
+            <button id="book-call-button">Get In Touch</button>
             <div id="call-booking-form" style="display: none;">
               <h3>Book a Call</h3>
               <form id="call-form-inputs">

@@ -47,12 +47,39 @@
       flex-direction: column;
     }
 
+    /* New styles for Anna's name and AI image */
     #chat-header {
       padding: 10px;
       background-color: #4CAF50;
       color: white;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      /* Adjusted to space-between */
+      align-items: center;
+      /* Added to vertically center content */
+    }
+
+    #chat-header h2 {
+      margin: 0;
+      /* Remove default margin */
+    }
+
+    #ai-initials {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #007bff;
+      /* Adjusted color */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      /* Adjust font size */
+      font-weight: bold;
+      /* Added font weight */
+      color: white;
+      margin-right: 10px;
+      /* Add margin for spacing */
     }
 
     #close-button {
@@ -156,6 +183,8 @@
     </div>
     <div id="chat-container" style="display: none;">
       <div id="chat-header">
+        <div id="ai-initials">AI</div>
+        <h2>Anna</h2> <!-- New heading for Anna's name -->
         <span id="close-button">&times;</span>
       </div>
       <div id="chat-messages"></div>
@@ -168,13 +197,13 @@
         <form id="call-form-inputs">
           <label for="name">Name:</label>
           <input type="text" id="name" required>
-    
+
           <label for="phone">Phone:</label>
           <input type="tel" id="phone" required>
-    
+
           <label for="email">Email:</label>
           <input type="email" id="email" required>
-    
+
           <button type="submit">Submit</button>
         </form>
       </div>

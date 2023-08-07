@@ -53,33 +53,38 @@
       background-color: #4CAF50;
       color: white;
       display: flex;
-      justify-content: space-between;
-      /* Adjusted to space-between */
-      align-items: center;
-      /* Added to vertically center content */
+      align-items: center; /* Vertically center content */
+      justify-content: flex-end; /* Right-align content */
     }
+
 
     #chat-header h2 {
       margin: 0;
       /* Remove default margin */
     }
 
+    #ai-name-container {
+      display: flex;
+      align-items: center;
+      margin-right: 10px; /* Add margin for spacing */
+    }
+
     #ai-initials {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #007bff;
-      /* Adjusted color */
+      background-color: #007bff; /* Adjusted color */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      /* Adjust font size */
-      font-weight: bold;
-      /* Added font weight */
+      font-size: 16px; /* Adjust font size */
+      font-weight: bold; /* Added font weight */
       color: white;
-      margin-right: 10px;
-      /* Add margin for spacing */
+    }
+
+    #annas-name {
+      font-size: 14px; /* Adjust font size */
+      margin-left: 5px; /* Add margin for spacing */
     }
 
     #close-button {

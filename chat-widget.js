@@ -1,3 +1,212 @@
+window.addEventListener('DOMContentLoaded', function () {
+  // Function to create and inject chat widget HTML
+  function createAndInjectChatWidget() {
+      // Create a wrapper div for your chat widget
+      const chatWidgetWrapper = document.createElement('div');
+      chatWidgetWrapper.innerHTML = `
+      <!DOCTYPE html>
+      <html>
+      
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Embeddable Chat Widget</title>
+      
+      
+      
+        <!-- Include your CSS styles or link to an external CSS file -->
+        <style>
+          #chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 80%;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+          }
+      
+          #chat-circle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+          }
+      
+          #chat-circle img {
+            width: 40px;
+            height: 40px;
+          }
+      
+          #chat-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+      
+          #chat-header {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+          }
+      
+          #close-button {
+            cursor: pointer;
+          }
+      
+          #chat-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+          }
+      
+          #message-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0;
+          }
+      
+          #send-button {
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+          }
+      
+          /* Style for response messages */
+          .message.response {
+            background-color: #F2F2F2;
+            color: #555555;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+          }
+      
+          /* Style for the spinner */
+          .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+          }
+      
+          /* Style for the book call */
+          #book-call-button {
+            width: 25%;
+            align-self: flex-end;
+          }
+      
+          #call-booking-form {
+            display: none;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          }
+      
+          #call-form-inputs label,
+          #call-form-inputs input,
+          #call-form-inputs button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+          }
+      
+          #call-form-inputs button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+      
+      
+      
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+      
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+      </head>
+      
+      <body>
+        <!-- Embeddable Chat Widget -->
+        <div id="chat-widget">
+          <div id="chat-circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/6488/6488547.png" alt="Chat Icon" />
+          </div>
+          <div id="chat-container" style="display: none;">
+            <div id="chat-header">
+              <span id="close-button">&times;</span>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="typing-indicator" style="display: none;">
+              <div class="spinner"></div>
+            </div>
+            <button id="book-call-button">Send Info</button>
+            <div id="call-booking-form" style="display: none;">
+              <h3>Book a Call</h3>
+              <form id="call-form-inputs">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+          
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" required>
+          
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+          
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+            <input type="text" id="message-input" placeholder="Type your message..." />
+            <button id="send-button">Send</button>
+          </div>
+        </div>
+      
+      
+      
+        <!-- Include the chat widget JavaScript -->
+        <script src="/chat-widget.js"></script>
+      </body>
+      
+      </html>
+      `;
+
+      // Insert the chat widget wrapper before the end of the body
+      document.body.appendChild(chatWidgetWrapper);
+  }
+
+  // Call the function to create and inject the chat widget HTML
+  createAndInjectChatWidget();
+});
+
+
 // JavaScript
 window.addEventListener('DOMContentLoaded', function () {
   const chatCircle = document.getElementById('chat-circle');

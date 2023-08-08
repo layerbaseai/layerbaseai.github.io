@@ -10,134 +10,42 @@
 
   <!-- Include your CSS styles or link to an external CSS file -->
   <style>
-    #chat-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      height: 80%;
-      border-radius: 5px;
-      overflow: hidden;
-      transition: height 0.3s ease;
-    }
-
-    #chat-circle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #4CAF50;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 9999;
-    }
-
-    #chat-circle img {
-      width: 40px;
-      height: 40px;
-    }
-
-    #chat-container {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* New styles for Anna's name and AI image */
-    #chat-header {
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      align-items: center; /* Vertically center content */
-      justify-content: flex-end; /* Right-align content */
-    }
-
-
-    #chat-header h2 {
-      margin: 0;
-      /* Remove default margin */
-    }
-
     #ai-name-container {
       display: flex;
       align-items: center;
-      margin-right: 10px; /* Add margin for spacing */
     }
 
     #ai-initials {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #007bff; /* Adjusted color */
+      background-color: #007bff;
+      /* Adjusted color */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px; /* Adjust font size */
-      font-weight: bold; /* Added font weight */
+      font-size: 16px;
+      /* Adjust font size */
+      font-weight: bold;
+      /* Added font weight */
       color: white;
-    }
-
-    #annas-name {
-      font-size: 14px; /* Adjust font size */
-      margin-left: 5px; /* Add margin for spacing */
-    }
-
-    #close-button {
-      cursor: pointer;
-    }
-
-    #chat-messages {
-      flex-grow: 1;
-      padding: 10px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-    }
-
-    #message-input {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-top: none;
-      border-radius: 0;
-    }
-
-    #send-button {
-      padding: 10px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* Style for response messages */
-    .message.response {
-      background-color: #F2F2F2;
-      color: #555555;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-
-    /* Style for the spinner */
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+      margin-right: 10px;
+      /* Add margin for spacing */
     }
 
     /* Style for the book call */
     #book-call-button {
-      width: 25%;
       align-self: flex-end;
+      width: 50%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      margin: 0 10px 0 0;
     }
+
 
     #call-booking-form {
       display: none;
@@ -167,6 +75,297 @@
     }
 
 
+    #chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      height: 90%;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: height 0.3s ease;
+      padding-bottom: 5px;
+    }
+
+    #chat-circle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #4fa9d9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #chat-circle img {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* Updated styles for the chat container */
+    #chat-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-radius: 20px;
+    }
+
+    /* New styles for Anna's name and AI image */
+    #chat-header {
+      padding: 10px;
+      background-color: #4fa9d9;
+      color: white;
+      display: flex;
+      align-items: center;
+      /* Vertically center content */
+      justify-content: space-between;
+      /* Space evenly between content */
+    }
+
+    #chat-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    #close-button {
+      font-size: 24px;
+      /* Increase font size */
+      cursor: pointer;
+    }
+
+    /**
+    Loader
+    */
+
+    .dot-pulse {
+      position: relative;
+      left: -9999px;
+      width: 5px;
+      height: 5px;
+      border-radius: 2.5px;
+      background-color: #fff;
+      color: #959595;
+      box-shadow: 9999px 0 0 -5px;
+      animation: dot-pulse 1.5s infinite linear;
+      animation-delay: 0.25s;
+      margin: 0 20px 0 40px;
+    }
+
+    .dot-pulse::before,
+    .dot-pulse::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 2.5px;
+      background-color: #fff;
+      color: #959595;
+    }
+
+    .dot-pulse::before {
+      box-shadow: 9984px 0 0 -5px;
+      animation: dot-pulse-before 1.5s infinite linear;
+      animation-delay: 0s;
+    }
+
+    .dot-pulse::after {
+      box-shadow: 10014px 0 0 -5px;
+      animation: dot-pulse-after 1.5s infinite linear;
+      animation-delay: 0.5s;
+    }
+
+
+    #dynamic-name {
+      font-size: 20px;
+      /* Adjust font size */
+    }
+
+
+    #message-input {
+      padding: 10px;
+      border: none;
+      border-top: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #E0E0E0;
+      margin: 10px;
+      /* Add margin on top, right, and bottom */
+      flex-grow: 1;
+      /* Expand to fill available space */
+      box-sizing: border-box;
+      /* Include padding and border in the element's total width */
+      width: 75%;
+    }
+
+
+    .message {
+      margin-bottom: 10px;
+      font-size: 14px;
+      display: flex;
+      /* Use flex layout */
+      justify-content: flex-start;
+      /* Align content to the start */
+      max-width: 70%;
+      /* Limit the width of the bubbles */
+    }
+
+    /* New styles for the message container */
+    .message-container {
+      display: flex;
+      align-items: flex-start;
+      /* Align items at the start (top) */
+      margin-bottom: 10px;
+    }
+
+
+
+    /* Style for response messages */
+    .message.response {
+      background-color: #F2F2F2;
+      color: #555555;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    /* Updated styles for the message avatar */
+    .message-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #95c2e6;
+      /* Adjusted color */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      /* Adjust font size */
+      font-weight: bold;
+      /* Added font weight */
+      color: white;
+      margin-right: 10px;
+      /* Add margin for spacing */
+    }
+
+    /* Adjusted styles for the message text */
+    .message-text {
+      display: inline-block;
+      word-wrap: break-word;
+      background-color: #007bff;
+      padding: 10px;
+      color: #fff;
+      border-radius: 5px 20px 20px 20px;
+    }
+
+    .message-content {
+      width: 80%;
+    }
+
+    /* Apply flexbox to the message form */
+    .message-form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Style for AI speech bubble */
+    .response {
+      color: #555555;
+      align-self: flex-start;
+      background-color: #f2f2f2;
+      /* Grey background for AI messages */
+      border-radius: 20px 20px 0 20px;
+      /* Rounded corners for AI speech bubble */
+      margin-right: auto;
+      /* Push the bubble to the left for AI messages */
+    }
+
+    #send-button {
+      padding: 10px;
+      border: none;
+      background-color: white;
+      color: blue;
+      cursor: pointer;
+      width: auto;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .typing-container {
+      display: flex;
+      align-items: center;
+    }
+
+
+    #typing-message {
+      display: inline;
+      color: #959595;
+      margin-left: 8px;
+    }
+
+    /* Style for user speech bubble */
+    .user {
+      align-self: flex-end;
+      padding: 10px;
+      margin-left: auto;
+    }
+
+    @keyframes dot-pulse-before {
+      0% {
+        box-shadow: 9984px 0 0 -5px;
+      }
+
+      30% {
+        box-shadow: 9984px 0 0 2px;
+      }
+
+      60%,
+      100% {
+        box-shadow: 9984px 0 0 -5px;
+      }
+    }
+
+    @keyframes dot-pulse {
+      0% {
+        box-shadow: 9999px 0 0 -5px;
+      }
+
+      30% {
+        box-shadow: 9999px 0 0 2px;
+      }
+
+      60%,
+      100% {
+        box-shadow: 9999px 0 0 -5px;
+      }
+    }
+
+    @keyframes dot-pulse-after {
+      0% {
+        box-shadow: 10014px 0 0 -5px;
+      }
+
+      30% {
+        box-shadow: 10014px 0 0 2px;
+      }
+
+      60%,
+      100% {
+        box-shadow: 10014px 0 0 -5px;
+      }
+    }
+
 
     @keyframes spin {
       0% {
@@ -188,15 +387,20 @@
     </div>
     <div id="chat-container" style="display: none;">
       <div id="chat-header">
-        <div id="ai-initials">AI</div>
-        <h2>Anna</h2> <!-- New heading for Anna's name -->
+        <div id="ai-name-container">
+          <div id="ai-initials">AI</div>
+          <div id="dynamic-name">AI Receptionist</div>
+        </div>
         <span id="close-button">&times;</span>
       </div>
       <div id="chat-messages"></div>
       <div id="typing-indicator" style="display: none;">
-        <div class="spinner"></div>
+        <div class="typing-container">
+          <div class="dot-pulse"></div>
+          <p id="typing-message">AI Receptionist is typing</p>
+        </div>
       </div>
-      <button id="book-call-button">Send Info</button>
+      <button id="book-call-button">Get In Touch</button>
       <div id="call-booking-form" style="display: none;">
         <h3>Book a Call</h3>
         <form id="call-form-inputs">
@@ -212,15 +416,17 @@
           <button type="submit">Submit</button>
         </form>
       </div>
-      <input type="text" id="message-input" placeholder="Type your message..." />
-      <button id="send-button">Send</button>
+      <form id="message-form">
+        <input type="text" id="message-input" placeholder="Write Message" />
+        <button type="submit" id="send-button">Send</button>
+      </form>
     </div>
   </div>
 
 
 
   <!-- Include the chat widget JavaScript -->
-  <script src="/test-chat.js"></script>
+  <script src="file:///Users/devops/Documents/GitHub/layerbaseai.github.io/test-chat.js"></script>
 </body>
 
 </html>

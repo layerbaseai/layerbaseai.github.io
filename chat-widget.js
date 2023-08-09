@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', function () {
   function createAndInjectChatWidget() {
     // Create a wrapper div for your chat widget
     const chatWidgetWrapper = document.createElement('div');
+    chatWidgetWrapper.style.zIndex = 999999
     chatWidgetWrapper.innerHTML = `
     <!DOCTYPE html>
     <html>
@@ -266,7 +267,6 @@ window.addEventListener('DOMContentLoaded', function () {
           padding: 10px;
           color: #fff;
           border-radius: 15px 5px 15px 15px;
-          text-align: justify;
           max-width: 80%;
         }
     
@@ -304,7 +304,6 @@ window.addEventListener('DOMContentLoaded', function () {
           padding: 10px;
           color: #fff;
           border-radius: 5px 15px 15px 15px;
-          text-align: justify;
           max-width: 80%;
         }
     

@@ -153,8 +153,7 @@
       width: 5px;
       height: 5px;
       border-radius: 2.5px;
-      background-color: #fff;
-      color: #959595;
+      color: #fff;
       box-shadow: 9999px 0 0 -5px;
       animation: dot-pulse 1.5s infinite linear;
       animation-delay: 0.25s;
@@ -170,8 +169,7 @@
       width: 5px;
       height: 5px;
       border-radius: 2.5px;
-      background-color: #fff;
-      color: #959595;
+      color: #fff;
     }
 
     .dot-pulse::before {
@@ -223,11 +221,8 @@
     /* New styles for the message container */
     .message-container {
       display: flex;
-      align-items: flex-start;
-      /* Align items at the start (top) */
       margin-bottom: 10px;
     }
-
 
 
     /* Style for response messages */
@@ -245,17 +240,14 @@
       height: 30px;
       border-radius: 50%;
       background-color: #95c2e6;
-      /* Adjusted color */
-      display: flex;
-      align-items: center;
+      display: inline-flex;
+      align-self: flex-start;
       justify-content: center;
       font-size: 16px;
-      /* Adjust font size */
       font-weight: bold;
-      /* Added font weight */
       color: white;
-      margin-right: 10px;
-      /* Add margin for spacing */
+      margin-left: 10px;
+      align-items: center;
     }
 
     /* Adjusted styles for the message text */
@@ -265,11 +257,14 @@
       background-color: #007bff;
       padding: 10px;
       color: #fff;
-      border-radius: 5px 20px 20px 20px;
+      border-radius: 15px 5px 15px 15px;
+      text-align: justify;
+      max-width: 80%;
     }
 
     .message-content {
-      width: 80%;
+      width: 90%;
+      text-align: end;
     }
 
     /* Apply flexbox to the message form */
@@ -283,13 +278,43 @@
     .response {
       color: #555555;
       align-self: flex-start;
-      background-color: #f2f2f2;
-      /* Grey background for AI messages */
       border-radius: 20px 20px 0 20px;
       /* Rounded corners for AI speech bubble */
       margin-right: auto;
       /* Push the bubble to the left for AI messages */
     }
+
+    .response-content {
+      text-align: start;
+      width: 90%;
+    }
+
+    .response-text {
+      display: inline-block;
+      word-wrap: break-word;
+      background-color: #6d8aaa;
+      padding: 10px;
+      color: #fff;
+      border-radius: 5px 15px 15px 15px;
+      text-align: justify;
+      max-width: 80%;
+    }
+
+    .response-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #dc7064;
+      display: inline-flex;
+      align-self: flex-start;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-right: 10px;
+      align-items: center;
+    }
+
 
     #send-button {
       padding: 10px;
@@ -303,8 +328,13 @@
     }
 
     .typing-container {
-      display: flex;
-      align-items: center;
+      display: inline-block;
+      word-wrap: break-word;
+      background-color: #6d8aaa;
+      padding: 5px;
+      color: #fff;
+      border-radius: 5px 15px 15px 15px;
+      text-align: justify;
     }
 
 
@@ -316,9 +346,24 @@
 
     /* Style for user speech bubble */
     .user {
-      align-self: flex-end;
       padding: 10px;
-      margin-left: auto;
+      align-items: flex-end;
+    }
+
+    /* In your <style> tag or external CSS file */
+    body {
+      font-family: "Roboto", Arial, sans-serif;
+    }
+
+    /* Apply the font to specific elements */
+    #chat-header,
+    .message-text,
+    .response-text,
+    #message-input,
+    #call-form-inputs label,
+    #call-form-inputs input,
+    #call-form-inputs button {
+      font-family: "Roboto", Arial, sans-serif;
     }
 
     @keyframes dot-pulse-before {
@@ -393,11 +438,11 @@
         </div>
         <span id="close-button">&times;</span>
       </div>
-      <div id="chat-messages"></div>
-      <div id="typing-indicator" style="display: none;">
-        <div class="typing-container">
-          <div class="dot-pulse"></div>
-          <p id="typing-message">AI Receptionist is typing</p>
+      <div id="chat-messages">
+        <div id="typing-indicator" style="display: none;">
+          <div class="typing-container">
+            <div class="dot-pulse"></div>
+          </div>
         </div>
       </div>
       <button id="book-call-button">Get In Touch</button>

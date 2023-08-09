@@ -90,7 +90,9 @@ window.addEventListener('DOMContentLoaded', function () {
           border-radius: 20px;
           overflow: hidden;
           transition: height 0.3s ease;
+          background-color: #fff;
           padding-bottom: 5px;
+          z-index: 1000000; /* Set a high z-index value */
         }
     
         #chat-circle {
@@ -105,7 +107,7 @@ window.addEventListener('DOMContentLoaded', function () {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          z-index: 9999;
+          z-index: 1000001; /* Set a z-index higher than chat-widget */
         }
     
         #chat-circle img {
@@ -474,10 +476,6 @@ window.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     
-    
-    
-      <!-- Include the chat widget JavaScript -->
-      <script src="file:///Users/devops/Documents/GitHub/layerbaseai.github.io/test-chat.js"></script>
     </body>
     
     </html>

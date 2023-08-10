@@ -501,6 +501,10 @@ window.addEventListener('DOMContentLoaded', function () {
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
+  var scriptTag = document.getElementById('chat-widget-script');
+  var variable1 = scriptTag.getAttribute('data-variable1');
+  var variable2 = scriptTag.getAttribute('data-variable2');
+
 
   let sessionID;
 
@@ -562,8 +566,8 @@ window.addEventListener('DOMContentLoaded', function () {
       const payload = {
           query_text: message,
           index_name: "transcriptindex-index",
-          namespace_id: "1roofsolution",
-          layer_id: "1roofsolution",
+          namespace_id: variable1,
+          layer_id: variable2,
           session_id: sessionID,
           company_type: "Commercial and Residential Roofing"
       };

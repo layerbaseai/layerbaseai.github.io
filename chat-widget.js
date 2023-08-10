@@ -567,9 +567,9 @@ window.addEventListener('DOMContentLoaded', function () {
           query_text: message,
           index_name: "transcriptindex-index",
           namespace_id: variable1,
-          layer_id: variable2,
+          layer_id: variable1,
           session_id: sessionID,
-          company_type: "Commercial and Residential Roofing"
+          company_type: variable2
       };
 
       fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {

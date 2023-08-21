@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', function () {
             font-family: 'Nunito', sans-serif;
             font-weight: 400;
             font-size: 100%;
+            background-color: #F2F2F2;
           }
 
 

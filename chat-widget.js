@@ -558,6 +558,8 @@ window.addEventListener('DOMContentLoaded', function () {
         </div>
 
       </body>
+      
+      <script src="/chat-widget.js"></script>
 
       </html>
       `;

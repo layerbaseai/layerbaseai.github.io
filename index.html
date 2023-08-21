@@ -10,6 +10,36 @@
 
   <!-- Include your CSS styles or link to an external CSS file -->
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    *,
+    html {
+      --primaryGradient: linear-gradient(93.12deg, #1b2e98 0.52%, #1b2ae7 100%);
+      --secondaryGradient: linear-gradient(268.91deg, #1b2e98 -2.14%, #1b2ae7 99.69%);
+      --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+      --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+      --light: 300;
+      --regular: 400;
+      --semiBold: 600;
+      --extraLight: 300;
+      --italic: 300;
+      --primary: #1b2398;
+    }
+
+    /* 300;0,400;0,600;1,300 */
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      font-size: 100%;
+      background: #F1F1F1;
+    }
+
+
     #ai-name-container {
       display: flex;
       align-items: center;
@@ -37,13 +67,18 @@
     #book-call-button {
       align-self: flex-end;
       width: 50%;
-      background-color: #007bff;
+      background: var(--primaryGradient);
       color: white;
       border: none;
       padding: 8px 12px;
       border-radius: 15px;
       cursor: pointer;
-      margin: 0 10px 0 0;
+      margin: 0 10px 10px 0;
+      box-shadow: var(--primaryBoxShadow);
+    }
+
+    #book-cal-bg {
+      background: none;
     }
 
 
@@ -84,7 +119,6 @@
       border-radius: 20px;
       overflow: hidden;
       transition: height 0.3s ease;
-      padding-bottom: 5px;
     }
 
     #chat-circle {
@@ -94,7 +128,7 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background-color: #4fa9d9;
+      background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,24 +144,31 @@
     /* Updated styles for the chat container */
     #chat-container {
       height: 100%;
+      width: 350px;
       display: flex;
       flex-direction: column;
       position: relative;
-      border: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
       border-radius: 20px;
+      background-color: #F2F2F2;
     }
 
     /* New styles for Anna's name and AI image */
     #chat-header {
       padding: 10px;
-      background-color: #4fa9d9;
+      background: var(--primaryGradient);
       color: white;
       display: flex;
       align-items: center;
       /* Vertically center content */
       justify-content: space-between;
       /* Space evenly between content */
+      box-shadow: var(--primaryBoxShadow);
+    }
+
+    /* New styles for Anna's name and AI image */
+    #chat-footer {
+      padding: 10px;
+      background: var(--primaryGradient);
     }
 
     #chat-messages {
@@ -153,7 +194,7 @@
       width: 5px;
       height: 5px;
       border-radius: 2.5px;
-      color: #fff;
+      color: #0077ff;
       box-shadow: 9999px 0 0 -5px;
       animation: dot-pulse 1.5s infinite linear;
       animation-delay: 0.25s;
@@ -169,7 +210,7 @@
       width: 5px;
       height: 5px;
       border-radius: 2.5px;
-      color: #fff;
+      color: #0077ff;
     }
 
     .dot-pulse::before {
@@ -234,14 +275,19 @@
       border-radius: 5px;
     }
 
+    .message-label {
+      font-size: 11px;
+      padding: 0 12px;
+    }
+
     /* Updated styles for the message avatar */
     .message-avatar {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      background-color: #95c2e6;
+      background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
       display: inline-flex;
-      align-self: flex-start;
+      align-self: flex-end;
       justify-content: center;
       font-size: 16px;
       font-weight: bold;
@@ -254,12 +300,12 @@
     .message-text {
       display: inline-block;
       word-wrap: break-word;
-      background-color: #007bff;
+      background: var(--primaryGradient);
       padding: 10px;
       color: #fff;
-      border-radius: 15px 5px 15px 15px;
-      text-align: justify;
-      max-width: 80%;
+      border-radius: 15px 15px 5px 15px;
+      text-align: left;
+      width: inherit;
     }
 
     .message-content {
@@ -292,11 +338,10 @@
     .response-text {
       display: inline-block;
       word-wrap: break-word;
-      background-color: #6d8aaa;
       padding: 10px;
-      color: #fff;
-      border-radius: 5px 15px 15px 15px;
-      text-align: justify;
+      border-radius: 15px 15px 15px 5px;
+      border: 1px solid transparent;
+      background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
       max-width: 80%;
     }
 
@@ -304,9 +349,9 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      background-color: #dc7064;
+      background: linear-gradient(135deg, rgb(23, 135, 255), rgb(0, 27, 135));
       display: inline-flex;
-      align-self: flex-start;
+      align-self: flex-end;
       justify-content: center;
       font-size: 16px;
       font-weight: bold;
@@ -319,10 +364,11 @@
     #send-button {
       padding: 10px;
       border: none;
-      background-color: white;
-      color: blue;
+      background-color: rgba(255, 255, 255, 0);
+      color: rgb(255, 255, 255);
       cursor: pointer;
       width: auto;
+      font-size: 15px;
       border-radius: 5px;
       margin: 10px 0;
     }
@@ -330,11 +376,10 @@
     .typing-container {
       display: inline-block;
       word-wrap: break-word;
-      background-color: #6d8aaa;
+      background-color: #6d8baa00;
       padding: 5px;
       color: #fff;
       border-radius: 5px 15px 15px 15px;
-      text-align: justify;
     }
 
 
@@ -445,9 +490,11 @@
           </div>
         </div>
       </div>
-      <button id="book-call-button">Get In Touch</button>
+      <!-- <div id="book-call-bg"> -->
+        <button id="book-call-button">Talk to Person</button>
+      <!-- </div> -->
       <div id="call-booking-form" style="display: none;">
-        <h3>Book a Call</h3>
+        <h3>Talk to Person</h3>
         <form id="call-form-inputs">
           <label for="name">Name:</label>
           <input type="text" id="name" required>
@@ -461,10 +508,12 @@
           <button type="submit">Submit</button>
         </form>
       </div>
+      <div id="chat-footer">
       <form id="message-form">
         <input type="text" id="message-input" placeholder="Write Message" />
         <button type="submit" id="send-button">Send</button>
       </form>
+    </div>
     </div>
   </div>
 

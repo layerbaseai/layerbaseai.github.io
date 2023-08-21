@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     chatCircle.addEventListener('click', function () {
         chatContainer.style.display = 'flex';
+        chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
         chatCircle.style.display = 'none';
         sessionID = generateUUID();
         // Use the sessionID in your API requests or other logic
@@ -24,6 +25,7 @@ window.addEventListener('DOMContentLoaded', function () {
     closeButton.addEventListener('click', function () {
         chatContainer.style.display = 'none';
         chatCircle.style.display = 'flex';
+        chatWidget.style.boxShadow = "0px 0 0 #fff";
     });
 
     sendButton.addEventListener('click', function () {

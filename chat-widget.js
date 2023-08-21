@@ -506,6 +506,7 @@ window.addEventListener('DOMContentLoaded', function () {
       </head>
 
       <body>
+      <p>updating?</p>
         <!-- Embeddable Chat Widget -->
         <div id="chat-widget">
           <div id="chat-circle">

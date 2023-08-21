@@ -43,7 +43,6 @@ window.addEventListener('DOMContentLoaded', function () {
             font-family: 'Nunito', sans-serif;
             font-weight: 400;
             font-size: 100%;
-            background: #F1F1F1;
           }
 
 
@@ -506,7 +505,6 @@ window.addEventListener('DOMContentLoaded', function () {
       </head>
 
       <body>
-        <div id="test-div">Test</div>
         <!-- Embeddable Chat Widget -->
         <div id="chat-widget">
           <div id="chat-circle">

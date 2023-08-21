@@ -433,7 +433,7 @@ window.addEventListener('DOMContentLoaded', function () {
           /* In your <style> tag or external CSS file */
           body {
             font-family: "Roboto", Arial, sans-serif;
-            background-color: #007bff;
+            background-color: #F2F2F2;
           }
 
           /* Apply the font to specific elements */
@@ -506,7 +506,6 @@ window.addEventListener('DOMContentLoaded', function () {
       </head>
 
       <body>
-      <p>updating?</p>
         <!-- Embeddable Chat Widget -->
         <div id="chat-widget">
           <div id="chat-circle">

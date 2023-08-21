@@ -11,11 +11,14 @@ window.addEventListener('DOMContentLoaded', function () {
     const callBookingForm = document.getElementById('call-booking-form');
     const callFormInputs = document.getElementById('call-form-inputs');
 
+    const avatar = "https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fa115450d611a5d9e5adccb79c5cdadc6.cdn.bubble.io%2Ff1692125393551x158245438633071400%2FOmnibot%2520Logo.002.jpeg?w=128&h=128&auto=compress&dpr=1&fit=max"
+
     let sessionID;
 
     chatCircle.addEventListener('click', function () {
         chatContainer.style.display = 'flex';
         chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
+        chatWidget.style.height = "90%";
         chatCircle.style.display = 'none';
         sessionID = generateUUID();
         // Use the sessionID in your API requests or other logic
@@ -26,6 +29,7 @@ window.addEventListener('DOMContentLoaded', function () {
         chatContainer.style.display = 'none';
         chatCircle.style.display = 'flex';
         chatWidget.style.boxShadow = "0px 0 0 #fff";
+        chatWidget.style.height = "0";
     });
 
     sendButton.addEventListener('click', function () {
@@ -55,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function () {
         const typingIndicator = document.createElement('div');
         typingIndicator.classList.add('message-container', 'response'); // Add classes for styling
         typingIndicator.innerHTML = `
-            <div class="response-avatar">AI</div>
+            <img class="response-avatar" src=${avatar}/>
             <div class="response-content">
                 <div class="message-label">AI</div>
                 <div class="response-text">

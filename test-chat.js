@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
         chatWidget.style.height = "90%";
         chatCircle.style.display = 'none';
         // Check if session ID already exists in local storage
-        let sessionID = localStorage.getItem('sessionID');
+        sessionID = localStorage.getItem('sessionID');
         
         if (!sessionID) {
             sessionID = generateUUID();
@@ -115,7 +115,6 @@ window.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 // Handle any errors that occur during the API request
-                console.error('There was an error');
                 console.error('Error:', error);
                 // Wait for 3 seconds
                 setTimeout(function () {

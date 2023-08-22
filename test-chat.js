@@ -115,13 +115,14 @@ window.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 // Handle any errors that occur during the API request
+                console.error('There was an error');
                 console.error('Error:', error);
                 // Wait for 3 seconds
                 setTimeout(function () {
                     // Your code to be executed after the delay
                     chatMessages.removeChild(typingIndicator);
                     appendMessage("Please ask again", "url", 'response');
-                }, 12000);
+                }, 4000);
                 // Remove the typing indicator and append a default response
             });
     }

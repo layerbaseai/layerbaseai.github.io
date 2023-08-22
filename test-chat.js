@@ -20,8 +20,17 @@ window.addEventListener('DOMContentLoaded', function () {
         chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
         chatWidget.style.height = "90%";
         chatCircle.style.display = 'none';
-        sessionID = generateUUID();
-        // Use the sessionID in your API requests or other logic
+        // Check if session ID already exists in local storage
+        let sessionID = localStorage.getItem('sessionID');
+        
+        if (!sessionID) {
+            sessionID = generateUUID();
+            localStorage.setItem('sessionID', sessionID);
+            appendMessage("How can I help you today?", "url", 'response');
+        } else {
+            appendMessage("Welcome back, how can I help you today?", "url", 'response');
+        } 
+
         console.log('Session ID:', sessionID);
     });
 

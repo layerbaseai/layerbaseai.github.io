@@ -370,7 +370,7 @@ window.addEventListener('DOMContentLoaded', function () {
             border-radius: 15px 15px 15px 5px;
             border: 1px solid transparent;
             background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
-            max-width: 80%;
+            max-width: 100%;
           }
 
           .response-avatar {
@@ -602,10 +602,19 @@ window.addEventListener('DOMContentLoaded', function () {
     chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
     chatWidget.style.height = "90%";
     chatCircle.style.display = 'none';
-    sessionID = generateUUID();
-    // Use the sessionID in your API requests or other logic
+    // Check if session ID already exists in local storage
+    sessionID = localStorage.getItem('sessionID');
+    
+    if (!sessionID) {
+        sessionID = generateUUID();
+        localStorage.setItem('sessionID', sessionID);
+        appendMessage("How can I help you today?", "url", 'response');
+    } else {
+        appendMessage("Welcome back, how can I help you today?", "url", 'response');
+    } 
+
     console.log('Session ID:', sessionID);
-  });
+});
 
   closeButton.addEventListener('click', function () {
     chatContainer.style.display = 'none';
@@ -691,7 +700,7 @@ window.addEventListener('DOMContentLoaded', function () {
         console.error('Error:', error);
         // Wait for 3 seconds
         chatMessages.removeChild(typingIndicator);
-        appendMessage("Please ask again", "url", 'response');
+        appendMessage("I couldn't find the answer to that, is there anything else I can help you with?", "url", 'response');
       });
   }
 
@@ -748,16 +757,6 @@ window.addEventListener('DOMContentLoaded', function () {
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  function showTypingIndicator() {
-    const typingIndicator = document.getElementById('typing-indicator');
-    typingIndicator.style.display = 'inline-block';
-  }
-
-  function hideTypingIndicator() {
-    const typingIndicator = document.getElementById('typing-indicator');
-    typingIndicator.style.display = 'none';
-  }
-
   bookCallButton.addEventListener('click', function () {
     if (callBookingForm.style.display === 'block') {
       callBookingForm.style.display = 'none';
@@ -805,7 +804,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Process the API response as needed
         console.log(data);
 
-        appendMessage("your information has been sent", "url", 'response');
+        appendMessage("Thank you for your contact information, someone will reach out to you shortly. In the meantime is there anything else I can help with?", "url", 'response');
       })
       .catch(error => {
         // Handle any errors that occur during the API request

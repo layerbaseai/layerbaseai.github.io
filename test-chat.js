@@ -179,16 +179,6 @@ window.addEventListener('DOMContentLoaded', function () {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function showTypingIndicator() {
-        const typingIndicator = document.getElementById('typing-indicator');
-        typingIndicator.style.display = 'inline-block';
-    }
-
-    function hideTypingIndicator() {
-        const typingIndicator = document.getElementById('typing-indicator');
-        typingIndicator.style.display = 'none';
-    }
-
     bookCallButton.addEventListener('click', function () {
         if (callBookingForm.style.display === 'block') {
             callBookingForm.style.display = 'none';
@@ -236,7 +226,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 // Process the API response as needed
                 console.log(data);
 
-                appendMessage("your information has been sent", "url", 'response');
+                appendMessage("Thank you for your contact information, someone will reach out to you shortly. In the meantime is there anything else I can help with?", "url", 'response');
             })
             .catch(error => {
                 // Handle any errors that occur during the API request

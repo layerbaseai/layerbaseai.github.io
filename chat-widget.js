@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', function () {
             flex-direction: column;
             position: relative;
             border-radius: 20px;
-            background-color: #F2F2F2;
+            background-color: #F7FAFF;
           }
 
           /* New styles for Anna's name and AI image */

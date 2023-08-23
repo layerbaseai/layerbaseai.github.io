@@ -43,7 +43,6 @@ window.addEventListener('DOMContentLoaded', function () {
             font-family: 'Nunito', sans-serif;
             font-weight: 400;
             font-size: 100%;
-            background-color: #F2F2F2;
           }
 
 
@@ -433,7 +432,6 @@ window.addEventListener('DOMContentLoaded', function () {
           /* In your <style> tag or external CSS file */
           body {
             font-family: "Roboto", Arial, sans-serif;
-            background-color: #F2F2F2;
           }
 
           /* Apply the font to specific elements */
@@ -788,7 +786,8 @@ window.addEventListener('DOMContentLoaded', function () {
       name_text: name,
       phone_text: phone,
       email_text: email,
-      session_id: sessionID
+      session_id: sessionID,
+      namespace_id: companyId
     };
 
 

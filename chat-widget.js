@@ -584,11 +584,12 @@ window.addEventListener('DOMContentLoaded', function () {
   const callFormInputs = document.getElementById('call-form-inputs');
   const dynamicName = document.getElementById('dynamic-name');
   const aiInitials = document.getElementById('ai-initials');
-  var scriptTag = document.getElementById('chat-widget-script');
-  var companyId = scriptTag.getAttribute('companyId');
-  var categories = scriptTag.getAttribute('categories');
-  var chatName = scriptTag.getAttribute('chatName');
-  var intials = scriptTag.getAttribute('intials');
+  let scriptTag = document.getElementById('chat-widget-script');
+  let companyId = scriptTag.getAttribute('companyId');
+  let categories = scriptTag.getAttribute('categories');
+  let chatName = scriptTag.getAttribute('chatName');
+  let intials = scriptTag.getAttribute('intials');
+  let accountId = scriptTag.getAttribute('accountId');
 
   dynamicName.innerText = chatName
   aiInitials.innerText = intials
@@ -597,6 +598,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   chatCircle.addEventListener('click', function () {
     chatContainer.style.display = 'flex';
+    chatContainer.style.zIndex = '1000000'
     chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
     chatWidget.style.height = "90%";
     chatCircle.style.display = 'none';
@@ -787,7 +789,8 @@ window.addEventListener('DOMContentLoaded', function () {
       phone_text: phone,
       email_text: email,
       session_id: sessionID,
-      namespace_id: companyId
+      namespace_id: companyId,
+      account_id: accountId
     };
 
 

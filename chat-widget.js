@@ -664,7 +664,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const bounceElement = document.getElementById('bounce-element');
   const aiInitials = document.getElementById('ai-initials');
   const dynamicName = document.getElementById('dynamic-name');
-  const htmlElement = document.documentElement;
+  let htmlElement = document.documentElement;
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
   let categories = scriptTag.getAttribute('categories');
@@ -674,9 +674,9 @@ window.addEventListener('DOMContentLoaded', function () {
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
 
-  // Change the value of the --primaryGradient variable
-  htmlElement.style.setProperty('--primaryGradient', `linear-gradient(135deg, ${color1}, ${color2})`);
+  const gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
+  htmlElement.style.setProperty('--primaryGradient', gradientValue);
 
 
   dynamicName.innerText = chatName

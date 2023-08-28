@@ -25,7 +25,6 @@ window.addEventListener('DOMContentLoaded', function () {
     
         *,
         html {
-          --primaryGradient: linear-gradient(93.12deg, #fff 0.52%, #1b2ae7 fff%);
           --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
           --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
           --light: 300;

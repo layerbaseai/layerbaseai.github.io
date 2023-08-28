@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Embeddable Chat Widget</title>
 
- 
+
 
   <!-- Include your CSS styles or link to an external CSS file -->
   <style>
@@ -84,10 +84,9 @@
 
     #call-booking-form {
       display: none;
-      background-color: var(--primaryGradient);
       padding: 20px;
-      border: 1px solid #007bff;
-      border-radius: 20px 20px 0 0;
+      border-top: 1px solid #E3E3E3;
+      border-radius: 10px 10px 0 0;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
@@ -100,11 +99,11 @@
     }
 
     #call-form-inputs button {
-      background-color: #007bff;
+      background: var(--primaryGradient);
       color: #fff;
       border: none;
       padding: 8px 12px;
-      border-radius: 20px;
+      border-radius: 10px;
       cursor: pointer;
       height: 45px;
       width: 75%;
@@ -119,7 +118,7 @@
       right: 20px;
       width: 350px;
       height: 0;
-      border-radius: 20px;
+      border-radius: 10px;
       overflow: hidden;
       transition: height 0.3s ease;
     }
@@ -131,7 +130,7 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
+      background: linear-gradient(135deg, #0048ff, #01ccff);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -151,32 +150,34 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      border-radius: 20px;
-      background-color: #F7FAFF;
+      background-color: #fff;
     }
 
     /* New styles for Anna's name and AI image */
     #chat-header {
       padding: 10px;
-      background: var(--primaryGradient);
-      color: white;
+      /* background: var(--primaryGradient); */
+      color: rgb(35, 35, 35);
       display: flex;
       align-items: center;
       /* Vertically center content */
       justify-content: space-between;
       /* Space evenly between content */
-      box-shadow: var(--primaryBoxShadow);
+      /* box-shadow: var(--primaryBoxShadow); */
+      border-bottom: 1px solid #E3E3E3;
+      font-weight: 600;
     }
 
     /* New styles for Anna's name and AI image */
     #chat-footer {
       padding: 10px;
-      background: var(--primaryGradient);
+      /* background: var(--primaryGradient); */
+      border-top: 1px solid #E3E3E3;
     }
 
     #chat-messages {
       flex-grow: 1;
-      padding: 10px;
+      padding: 10px 20px;
       overflow-y: auto;
     }
 
@@ -184,6 +185,7 @@
       font-size: 24px;
       /* Increase font size */
       cursor: pointer;
+      margin-right: 5px;
     }
 
     /**
@@ -232,7 +234,7 @@
       font-size: 20px;
       /* Adjust font size */
     }
-    
+
     #form-intro {
       text-align: center;
     }
@@ -245,10 +247,10 @@
     .form-input {
       height: 35px;
       font-size: 16px;
-      border-radius: 10px;
+      border-radius: 5px;
       padding: 0 10px;
       outline: none;
-      border: solid 1px #007bff;
+      border: solid 1px #e3e3e3;
     }
 
 
@@ -283,7 +285,7 @@
     /* New styles for the message container */
     .message-container {
       display: flex;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
 
@@ -298,7 +300,7 @@
 
     .message-label {
       font-size: 11px;
-      padding: 3px 0;
+      padding: 3px 15px;
     }
 
     /* Updated styles for the message avatar */
@@ -319,25 +321,38 @@
 
     /* Adjusted styles for the message text */
     .message-text {
-      display: inline-block;
-      word-wrap: break-word;
       background: var(--primaryGradient);
-      padding: 15px;
       color: #fff;
-      border-radius: 15px 15px 5px 15px;
-      text-align: left;
+      max-width: 85%;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: inline-block;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+      position: relative;
+      min-width: 60px;
     }
 
     .message-content {
-      width: 90%;
+      width: 100%;
       text-align: end;
     }
 
     /* Apply flexbox to the message form */
-    .message-form {
+    #message-form {
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    #omnibot-credits {
+      display: block;
+      background: #f7f7f8;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      color: #7d7c83;
     }
 
     /* Style for AI speech bubble */
@@ -356,13 +371,18 @@
     }
 
     .response-text {
-      display: inline-block;
-      word-wrap: break-word;
-      padding: 15px;
-      border-radius: 15px 15px 15px 5px;
-      border: 1px solid transparent;
       background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
-      max-width: 100%;
+      border: 1px solid transparent;
+      color: rgb(26, 26, 26);
+      max-width: 85%;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: inline-block;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+      position: relative;
+      min-width: 60px;
     }
 
     .response-avatar {
@@ -384,8 +404,8 @@
     #send-button {
       padding: 10px;
       border: none;
-      background-color: rgba(255, 255, 255, 0);
-      color: rgb(255, 255, 255);
+      /* background-color: rgba(255, 255, 255, 0);
+      color: rgb(255, 255, 255); */
       cursor: pointer;
       width: auto;
       font-size: 15px;
@@ -410,6 +430,22 @@
       margin-left: 8px;
     }
 
+    #text-area {
+      background: none;
+      border: none;
+      width: 85%;
+      font-family: "Roboto", Arial, sans-serif;
+      resize: none;
+      font-size: 15px;
+      line-height: 20px;
+      display: block;
+      color: inherit;
+      max-height: 200px;
+      outline: none;
+      height: 25px;
+      margin-left: 15px;
+    }
+
     #test-div {
       text-align: end;
       margin: 100px 20px;
@@ -418,7 +454,6 @@
 
     /* Style for user speech bubble */
     .user {
-      padding: 10px;
       align-items: flex-end;
     }
 
@@ -437,6 +472,47 @@
     #call-form-inputs button {
       font-family: "Roboto", Arial, sans-serif;
     }
+
+
+    #bounce-element {
+      color: rgb(255, 255, 255);
+      background: linear-gradient(135deg, rgb(0, 27, 135), rgb(23, 135, 255));
+      animation: bounce .3s ease-in-out 3;
+      animation-delay: 2s;
+      display: flex;
+      position: fixed;
+      bottom: 95px;
+      right: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.2s cubic-bezier(0.6, 0.4, 0, 1), opacity 0.15s cubic-bezier(0.6, 0.4, 0, 1);
+      /* Delay before the second bounce */
+    }
+
+    #bounce-element:after {
+      border-radius: 4px 0 0;
+      content: '';
+      height: 14px;
+      width: 14px;
+      position: absolute;
+      bottom: -7px;
+      transform: rotate(-135deg);
+      background: #1274E9;
+      right: 24px;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
 
     @keyframes dot-pulse-before {
       0% {
@@ -500,6 +576,7 @@
   <div id="test-div">Test</div>
   <!-- Embeddable Chat Widget -->
   <div id="chat-widget">
+    <div id="bounce-element">Have a question?</div>
     <div id="chat-circle">
       <img src="https://cdn-icons-png.flaticon.com/512/6488/6488547.png" alt="Chat Icon" />
     </div>
@@ -540,18 +617,22 @@
         </form>
       </div>
       <div id="chat-footer">
-      <form id="message-form">
-        <input type="text" id="message-input" placeholder="Write Message" />
-        <button type="submit" id="send-button">Send</button>
-      </form>
-    </div>
+        <form id="message-form">
+          <!-- <input type="text" id="message-input" placeholder="Write Message" /> -->
+          <textarea id="text-area" placeholder="Ask anything..."></textarea>
+          <button type="submit" id="send-button">Send</button>
+        </form>
+      </div>
+      <div id="omnibot-credits">
+        Powered by <a href="https://omnibotsystems.com" target="_blank">Omnibot</a>
+      </div>
     </div>
   </div>
 
 
 
   <!-- Include the chat widget JavaScript -->
-  <script src="/test-chat.js"></script>
+  <script src="file:///Users/devops/Documents/GitHub/omnibotsystems.github.io/test-chat.js"></script>
 </body>
 
 </html>

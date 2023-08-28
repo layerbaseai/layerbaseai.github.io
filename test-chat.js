@@ -3,13 +3,14 @@ window.addEventListener('DOMContentLoaded', function () {
     const chatCircle = document.getElementById('chat-circle');
     const chatWidget = document.getElementById('chat-widget');
     const closeButton = document.getElementById('close-button');
-    const messageInput = document.getElementById('message-input');
+    const messageInput = document.getElementById('text-area');
     const sendButton = document.getElementById('send-button');
     const chatContainer = document.getElementById('chat-container');
     const chatMessages = document.getElementById('chat-messages');
     const bookCallButton = document.getElementById('book-call-button');
     const callBookingForm = document.getElementById('call-booking-form');
     const callFormInputs = document.getElementById('call-form-inputs');
+    const bounceElement = document.getElementById('bounce-element');
 
     const avatar = "https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fa115450d611a5d9e5adccb79c5cdadc6.cdn.bubble.io%2Ff1692125393551x158245438633071400%2FOmnibot%2520Logo.002.jpeg?w=128&h=128&auto=compress&dpr=1&fit=max"
 
@@ -17,18 +18,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
     chatCircle.addEventListener('click', function () {
         chatContainer.style.display = 'flex';
-        chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
+        chatWidget.style.border = "1px solid #E3E3E3";
         chatWidget.style.height = "90%";
         chatCircle.style.display = 'none';
-        // Check if session ID already exists in local storage
-        sessionID = localStorage.getItem('sessionID');
+        bounceElement.style.display = 'none';
+        // Check if session ID already exists in session storage
+        sessionID = sessionStorage.getItem('sessionID');
         
         if (!sessionID) {
             sessionID = generateUUID();
-            localStorage.setItem('sessionID', sessionID);
+            sessionStorage.setItem('sessionID', sessionID);
             appendMessage("How can I help you today?", "url", 'response');
-        } else {
-            appendMessage("Welcome back, how can I help you today?", "url", 'response');
         } 
 
         console.log('Session ID:', sessionID);
@@ -39,6 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
         chatCircle.style.display = 'flex';
         chatWidget.style.boxShadow = "0px 0 0 #fff";
         chatWidget.style.height = "0";
+        chatWidget.style.border = "0 solid grey";
     });
 
     sendButton.addEventListener('click', function () {
@@ -68,9 +69,7 @@ window.addEventListener('DOMContentLoaded', function () {
         const typingIndicator = document.createElement('div');
         typingIndicator.classList.add('message-container', 'response'); // Add classes for styling
         typingIndicator.innerHTML = `
-            <img class="response-avatar" src=${avatar}/>
             <div class="response-content">
-                <div class="message-label">AI</div>
                 <div class="response-text">
                     <div class="typing-container">
                         <div class="dot-pulse"></div>
@@ -133,7 +132,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Create the message avatar element
         const avatarElement = document.createElement('div');
         avatarElement.classList.add('message-avatar');
-        avatarElement.textContent = type === 'user' ? 'G' : 'AI'; // Use 'Guest' for user messages
+        avatarElement.textContent = type === 'user' ? 'G' : 'AI'; 
 
         // Create a container for label and message text
         const contentContainer = document.createElement('div');
@@ -145,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function () {
         labelElement.textContent = type === 'user' ? 'Guest' : 'AI';
 
         // Append the label to the content container
-        contentContainer.appendChild(labelElement);
+        // contentContainer.appendChild(labelElement);
 
         // Create the message text element
         const messageElement = document.createElement('div');
@@ -160,14 +159,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
         // Append the avatar before or after the content container based on the message type
         if (type === 'user') {
-            messageContainer.appendChild(avatarElement);
+            // messageContainer.appendChild(avatarElement);
             contentContainer.classList.add('message-content'); // Add .message-content class for user messages
         } else {
-            messageContainer.insertBefore(avatarElement, contentContainer);
+            // messageContainer.insertBefore(avatarElement, contentContainer);
             contentContainer.classList.remove('message-content');
             contentContainer.classList.add('response-content'); // Add .response-content class for AI messages
-            avatarElement.classList.remove('message-avatar');
-            avatarElement.classList.add('response-avatar'); // Add .response-avatar class for AI messages
+            // avatarElement.classList.remove('message-avatar');
+            // avatarElement.classList.add('response-avatar'); // Add .response-avatar class for AI messages
             messageElement.classList.remove('message-text');
             messageElement.classList.add('response-text'); // Add .response-text class for AI messages
         }
@@ -192,10 +191,21 @@ window.addEventListener('DOMContentLoaded', function () {
     // Handle sending messages
     document.getElementById('message-form').addEventListener('submit', function (event) {
         event.preventDefault();
-        const message = document.getElementById('message-input').value.trim();
+        const message = document.getElementById('text-area').value.trim();
         if (message !== '') {
             sendMessage(message); // Call your message sending function
-            document.getElementById('message-input').value = ''; // Clear the input
+            document.getElementById('text-area').value = ''; // Clear the input
+        }
+    });
+
+    document.getElementById('text-area').addEventListener('keydown', function(event) {        
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            const message = document.getElementById('text-area').value.trim();
+            if (message !== '') {
+                sendMessage(message); // Call your message sending function
+                document.getElementById('text-area').value = ''; // Clear the input
+            }
         }
     });
 

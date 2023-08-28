@@ -5,554 +5,635 @@ window.addEventListener('DOMContentLoaded', function () {
     const chatWidgetWrapper = document.createElement('div');
     chatWidgetWrapper.style.zIndex = 999999
     chatWidgetWrapper.innerHTML = `
-      <!DOCTYPE html>
-      <html>
-
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Embeddable Chat Widget</title>
-
-      
-
-        <!-- Include your CSS styles or link to an external CSS file -->
-        <style>
-          * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Embeddable Chat Widget</title>
+    
+    
+    
+      <!-- Include your CSS styles or link to an external CSS file -->
+      <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+    
+        *,
+        html {
+          --primaryGradient: linear-gradient(93.12deg, #1b2e98 0.52%, #1b2ae7 100%);
+          --secondaryGradient: linear-gradient(268.91deg, #1b2e98 -2.14%, #1b2ae7 99.69%);
+          --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+          --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+          --light: 300;
+          --regular: 400;
+          --semiBold: 600;
+          --extraLight: 300;
+          --italic: 300;
+          --primary: #1b2398;
+        }
+    
+        /* 300;0,400;0,600;1,300 */
+    
+        body {
+          font-family: 'Nunito', sans-serif;
+          font-weight: 400;
+          font-size: 100%;
+        }
+    
+    
+        #ai-name-container {
+          display: flex;
+          align-items: center;
+        }
+    
+        #ai-initials {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #007bff;
+          /* Adjusted color */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          /* Adjust font size */
+          font-weight: bold;
+          /* Added font weight */
+          color: white;
+          margin-right: 10px;
+          /* Add margin for spacing */
+        }
+    
+        /* Style for the book call */
+        #book-call-button {
+          align-self: flex-end;
+          width: 50%;
+          background: var(--primaryGradient);
+          color: white;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 15px;
+          cursor: pointer;
+          margin: 10px 25%;
+          box-shadow: var(--primaryBoxShadow);
+        }
+    
+        #book-cal-bg {
+          background: transparent;
+          padding: 10px auto;
+        }
+    
+    
+        #call-booking-form {
+          display: none;
+          padding: 20px;
+          border-top: 1px solid #E3E3E3;
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        #call-form-inputs label,
+        #call-form-inputs input,
+        #call-form-inputs button {
+          display: block;
+          margin-bottom: 10px;
+          width: 100%;
+        }
+    
+        #call-form-inputs button {
+          background: var(--primaryGradient);
+          color: #fff;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 10px;
+          cursor: pointer;
+          height: 45px;
+          width: 75%;
+          margin: auto;
+          font-size: 15px;
+        }
+    
+    
+        #chat-widget {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 350px;
+          height: 0;
+          border-radius: 10px;
+          overflow: hidden;
+          transition: height 0.3s ease;
+        }
+    
+        #chat-circle {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #0048ff, #01ccff);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 9999;
+        }
+    
+        #chat-circle img {
+          width: 40px;
+          height: 40px;
+        }
+    
+        /* Updated styles for the chat container */
+        #chat-container {
+          height: 100%;
+          width: 350px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          background-color: #fff;
+        }
+    
+        /* New styles for Anna's name and AI image */
+        #chat-header {
+          padding: 10px;
+          /* background: var(--primaryGradient); */
+          color: rgb(35, 35, 35);
+          display: flex;
+          align-items: center;
+          /* Vertically center content */
+          justify-content: space-between;
+          /* Space evenly between content */
+          /* box-shadow: var(--primaryBoxShadow); */
+          border-bottom: 1px solid #E3E3E3;
+          font-weight: 600;
+        }
+    
+        /* New styles for Anna's name and AI image */
+        #chat-footer {
+          padding: 10px;
+          /* background: var(--primaryGradient); */
+          border-top: 1px solid #E3E3E3;
+        }
+    
+        #chat-messages {
+          flex-grow: 1;
+          padding: 10px 20px;
+          overflow-y: auto;
+        }
+    
+        #close-button {
+          font-size: 24px;
+          /* Increase font size */
+          cursor: pointer;
+          margin-right: 5px;
+        }
+    
+        /**
+        Loader
+        */
+    
+        .dot-pulse {
+          position: relative;
+          left: -9999px;
+          width: 5px;
+          height: 5px;
+          border-radius: 2.5px;
+          color: #0077ff;
+          box-shadow: 9999px 0 0 -5px;
+          animation: dot-pulse 1.5s infinite linear;
+          animation-delay: 0.25s;
+          margin: 0 20px 0 40px;
+        }
+    
+        .dot-pulse::before,
+        .dot-pulse::after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          width: 5px;
+          height: 5px;
+          border-radius: 2.5px;
+          color: #0077ff;
+        }
+    
+        .dot-pulse::before {
+          box-shadow: 9984px 0 0 -5px;
+          animation: dot-pulse-before 1.5s infinite linear;
+          animation-delay: 0s;
+        }
+    
+        .dot-pulse::after {
+          box-shadow: 10014px 0 0 -5px;
+          animation: dot-pulse-after 1.5s infinite linear;
+          animation-delay: 0.5s;
+        }
+    
+    
+        #dynamic-name {
+          font-size: 20px;
+          /* Adjust font size */
+        }
+    
+        #form-intro {
+          text-align: center;
+        }
+    
+        #form-intro-text {
+          font-size: 11px;
+          margin: 10px 0;
+        }
+    
+        .form-input {
+          height: 35px;
+          font-size: 16px;
+          border-radius: 5px;
+          padding: 0 10px;
+          outline: none;
+          border: solid 1px #e3e3e3;
+        }
+    
+    
+        #message-input {
+          padding: 10px;
+          border: none;
+          border-top: 1px solid #ccc;
+          border-radius: 15px;
+          background-color: #E0E0E0;
+          margin: 10px;
+          /* Add margin on top, right, and bottom */
+          flex-grow: 1;
+          /* Expand to fill available space */
+          box-sizing: border-box;
+          /* Include padding and border in the element's total width */
+          width: 75%;
+          outline: none;
+        }
+    
+    
+        .message {
+          margin-bottom: 10px;
+          font-size: 14px;
+          display: flex;
+          /* Use flex layout */
+          justify-content: flex-start;
+          /* Align content to the start */
+          max-width: 70%;
+          /* Limit the width of the bubbles */
+        }
+    
+        /* New styles for the message container */
+        .message-container {
+          display: flex;
+          margin-bottom: 15px;
+        }
+    
+    
+        /* Style for response messages */
+        .message.response {
+          background-color: #F2F2F2;
+          color: #555555;
+          padding: 8px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+        }
+    
+        .message-label {
+          font-size: 11px;
+          padding: 3px 15px;
+        }
+    
+        /* Updated styles for the message avatar */
+        .message-avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
+          display: inline-flex;
+          align-self: flex-end;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: bold;
+          color: white;
+          margin-left: 10px;
+          align-items: center;
+        }
+    
+        /* Adjusted styles for the message text */
+        .message-text {
+          background: var(--primaryGradient);
+          color: #fff;
+          max-width: 85%;
+          border-radius: 10px;
+          padding: 14px 18px;
+          display: inline-block;
+          font-size: 14px;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+          position: relative;
+          min-width: 60px;
+        }
+    
+        .message-content {
+          width: 100%;
+          text-align: end;
+        }
+    
+        /* Apply flexbox to the message form */
+        #message-form {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+    
+        #omnibot-credits {
+          display: block;
+          background: #f7f7f8;
+          text-align: center;
+          padding: 10px;
+          font-size: 11px;
+          color: #7d7c83;
+        }
+    
+        /* Style for AI speech bubble */
+        .response {
+          color: #555555;
+          align-self: flex-start;
+          border-radius: 20px 20px 0 20px;
+          /* Rounded corners for AI speech bubble */
+          margin-right: auto;
+          /* Push the bubble to the left for AI messages */
+        }
+    
+        .response-content {
+          text-align: start;
+          width: 90%;
+        }
+    
+        .response-text {
+          background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
+          border: 1px solid transparent;
+          color: rgb(26, 26, 26);
+          max-width: 85%;
+          border-radius: 10px;
+          padding: 14px 18px;
+          display: inline-block;
+          font-size: 14px;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+          position: relative;
+          min-width: 60px;
+        }
+    
+        .response-avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgb(23, 135, 255), rgb(0, 27, 135));
+          display: inline-flex;
+          align-self: flex-end;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: bold;
+          color: white;
+          margin-right: 10px;
+          align-items: center;
+        }
+    
+    
+        #send-button {
+          padding: 10px;
+          border: none;
+          /* background-color: rgba(255, 255, 255, 0);
+          color: rgb(255, 255, 255); */
+          cursor: pointer;
+          width: auto;
+          font-size: 15px;
+          border-radius: 5px;
+          margin: 10px 0;
+          outline: none;
+        }
+    
+        .typing-container {
+          display: inline-block;
+          word-wrap: break-word;
+          background-color: #6d8baa00;
+          padding: 5px;
+          color: #fff;
+          border-radius: 5px 15px 15px 15px;
+        }
+    
+    
+        #typing-message {
+          display: inline;
+          color: #959595;
+          margin-left: 8px;
+        }
+    
+        #text-area {
+          background: none;
+          border: none;
+          width: 85%;
+          font-family: "Roboto", Arial, sans-serif;
+          resize: none;
+          font-size: 15px;
+          line-height: 20px;
+          display: block;
+          color: inherit;
+          max-height: 200px;
+          outline: none;
+          height: 25px;
+          margin-left: 15px;
+        }
+    
+        #test-div {
+          text-align: end;
+          margin: 100px 20px;
+    
+        }
+    
+        /* Style for user speech bubble */
+        .user {
+          align-items: flex-end;
+        }
+    
+        /* In your <style> tag or external CSS file */
+        body {
+          font-family: "Roboto", Arial, sans-serif;
+        }
+    
+        /* Apply the font to specific elements */
+        #chat-header,
+        .message-text,
+        .response-text,
+        #message-input,
+        #call-form-inputs label,
+        #call-form-inputs input,
+        #call-form-inputs button {
+          font-family: "Roboto", Arial, sans-serif;
+        }
+    
+    
+        #bounce-element {
+          color: rgb(255, 255, 255);
+          background: linear-gradient(135deg, rgb(0, 27, 135), rgb(23, 135, 255));
+          animation: bounce .3s ease-in-out 3;
+          animation-delay: 2s;
+          display: flex;
+          position: fixed;
+          bottom: 95px;
+          right: 20px;
+          padding: 20px;
+          border-radius: 15px;
+          transition: transform 0.2s cubic-bezier(0.6, 0.4, 0, 1), opacity 0.15s cubic-bezier(0.6, 0.4, 0, 1);
+          /* Delay before the second bounce */
+        }
+    
+        #bounce-element:after {
+          border-radius: 4px 0 0;
+          content: '';
+          height: 14px;
+          width: 14px;
+          position: absolute;
+          bottom: -7px;
+          transform: rotate(-135deg);
+          background: #1274E9;
+          right: 24px;
+        }
+    
+        @keyframes bounce {
+    
+          0%,
+          100% {
+            transform: translateY(0);
           }
-
-          *,
-          html {
-            --primaryGradient: linear-gradient(93.12deg, #1b2e98 0.52%, #1b2ae7 100%);
-            --secondaryGradient: linear-gradient(268.91deg, #1b2e98 -2.14%, #1b2ae7 99.69%);
-            --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-            --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-            --light: 300;
-            --regular: 400;
-            --semiBold: 600;
-            --extraLight: 300;
-            --italic: 300;
-            --primary: #1b2398;
+    
+          50% {
+            transform: translateY(-10px);
           }
-
-          /* 300;0,400;0,600;1,300 */
-
-          body {
-            font-family: 'Nunito', sans-serif;
-            font-weight: 400;
-            font-size: 100%;
-          }
-
-
-          #ai-name-container {
-            display: flex;
-            align-items: center;
-          }
-
-          #ai-initials {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #007bff;
-            /* Adjusted color */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            /* Adjust font size */
-            font-weight: bold;
-            /* Added font weight */
-            color: white;
-            margin-right: 10px;
-            /* Add margin for spacing */
-          }
-
-          /* Style for the book call */
-          #book-call-button {
-            align-self: flex-end;
-            width: 50%;
-            background: var(--primaryGradient);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 15px;
-            cursor: pointer;
-            margin: 10px 25%;
-            box-shadow: var(--primaryBoxShadow);
-          }
-
-          #book-cal-bg {
-            background: transparent;
-            padding: 10px auto;
-          }
-
-
-          #call-booking-form {
-            display: none;
-            background-color: var(--primaryGradient);
-            padding: 20px;
-            border: 1px solid #007bff;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          }
-
-          #call-form-inputs label,
-          #call-form-inputs input,
-          #call-form-inputs button {
-            display: block;
-            margin-bottom: 10px;
-            width: 100%;
-          }
-
-          #call-form-inputs button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            height: 45px;
-            width: 75%;
-            margin: auto;
-            font-size: 15px;
-          }
-
-
-          #chat-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            height: 0;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: height 0.3s ease;
-          }
-
-          #chat-circle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 9999;
-          }
-
-          #chat-circle img {
-            width: 40px;
-            height: 40px;
-          }
-
-          /* Updated styles for the chat container */
-          #chat-container {
-            height: 100%;
-            width: 350px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border-radius: 20px;
-            background-color: #F7FAFF;
-          }
-
-          /* New styles for Anna's name and AI image */
-          #chat-header {
-            padding: 10px;
-            background: var(--primaryGradient);
-            color: white;
-            display: flex;
-            align-items: center;
-            /* Vertically center content */
-            justify-content: space-between;
-            /* Space evenly between content */
-            box-shadow: var(--primaryBoxShadow);
-          }
-
-          /* New styles for Anna's name and AI image */
-          #chat-footer {
-            padding: 10px;
-            background: var(--primaryGradient);
-          }
-
-          #chat-messages {
-            flex-grow: 1;
-            padding: 10px;
-            overflow-y: auto;
-          }
-
-          #close-button {
-            font-size: 24px;
-            /* Increase font size */
-            cursor: pointer;
-          }
-
-          /**
-          Loader
-          */
-
-          .dot-pulse {
-            position: relative;
-            left: -9999px;
-            width: 5px;
-            height: 5px;
-            border-radius: 2.5px;
-            color: #0077ff;
-            box-shadow: 9999px 0 0 -5px;
-            animation: dot-pulse 1.5s infinite linear;
-            animation-delay: 0.25s;
-            margin: 0 20px 0 40px;
-          }
-
-          .dot-pulse::before,
-          .dot-pulse::after {
-            content: "";
-            display: inline-block;
-            position: absolute;
-            top: 0;
-            width: 5px;
-            height: 5px;
-            border-radius: 2.5px;
-            color: #0077ff;
-          }
-
-          .dot-pulse::before {
+        }
+    
+    
+        @keyframes dot-pulse-before {
+          0% {
             box-shadow: 9984px 0 0 -5px;
-            animation: dot-pulse-before 1.5s infinite linear;
-            animation-delay: 0s;
           }
-
-          .dot-pulse::after {
+    
+          30% {
+            box-shadow: 9984px 0 0 2px;
+          }
+    
+          60%,
+          100% {
+            box-shadow: 9984px 0 0 -5px;
+          }
+        }
+    
+        @keyframes dot-pulse {
+          0% {
+            box-shadow: 9999px 0 0 -5px;
+          }
+    
+          30% {
+            box-shadow: 9999px 0 0 2px;
+          }
+    
+          60%,
+          100% {
+            box-shadow: 9999px 0 0 -5px;
+          }
+        }
+    
+        @keyframes dot-pulse-after {
+          0% {
             box-shadow: 10014px 0 0 -5px;
-            animation: dot-pulse-after 1.5s infinite linear;
-            animation-delay: 0.5s;
           }
-
-
-          #dynamic-name {
-            font-size: 20px;
-            /* Adjust font size */
+    
+          30% {
+            box-shadow: 10014px 0 0 2px;
           }
-          
-          #form-intro {
-            text-align: center;
+    
+          60%,
+          100% {
+            box-shadow: 10014px 0 0 -5px;
           }
-
-          #form-intro-text {
-            font-size: 11px;
-            margin: 10px 0;
+        }
+    
+    
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
           }
-
-          .form-input {
-            height: 35px;
-            font-size: 16px;
-            border-radius: 10px;
-            padding: 0 10px;
-            outline: none;
-            border: solid 1px #007bff;
+    
+          100% {
+            transform: rotate(360deg);
           }
-
-
-          #message-input {
-            padding: 10px;
-            border: none;
-            border-top: 1px solid #ccc;
-            border-radius: 15px;
-            background-color: #E0E0E0;
-            margin: 10px;
-            /* Add margin on top, right, and bottom */
-            flex-grow: 1;
-            /* Expand to fill available space */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width */
-            width: 75%;
-            outline: none;
-          }
-
-
-          .message {
-            margin-bottom: 10px;
-            font-size: 14px;
-            display: flex;
-            /* Use flex layout */
-            justify-content: flex-start;
-            /* Align content to the start */
-            max-width: 70%;
-            /* Limit the width of the bubbles */
-          }
-
-          /* New styles for the message container */
-          .message-container {
-            display: flex;
-            margin-bottom: 10px;
-          }
-
-
-          /* Style for response messages */
-          .message.response {
-            background-color: #F2F2F2;
-            color: #555555;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-          }
-
-          .message-label {
-            font-size: 11px;
-            padding: 3px 0;
-          }
-
-          /* Updated styles for the message avatar */
-          .message-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
-            display: inline-flex;
-            align-self: flex-end;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            margin-left: 10px;
-            align-items: center;
-          }
-
-          /* Adjusted styles for the message text */
-          .message-text {
-            display: inline-block;
-            word-wrap: break-word;
-            background: var(--primaryGradient);
-            padding: 15px;
-            color: #fff;
-            border-radius: 15px 15px 5px 15px;
-            text-align: left;
-          }
-
-          .message-content {
-            width: 90%;
-            text-align: end;
-          }
-
-          /* Apply flexbox to the message form */
-          .message-form {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
-
-          /* Style for AI speech bubble */
-          .response {
-            color: #555555;
-            align-self: flex-start;
-            border-radius: 20px 20px 0 20px;
-            /* Rounded corners for AI speech bubble */
-            margin-right: auto;
-            /* Push the bubble to the left for AI messages */
-          }
-
-          .response-content {
-            text-align: start;
-            width: 90%;
-          }
-
-          .response-text {
-            display: inline-block;
-            word-wrap: break-word;
-            padding: 15px;
-            border-radius: 15px 15px 15px 5px;
-            border: 1px solid transparent;
-            background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
-            max-width: 100%;
-          }
-
-          .response-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgb(23, 135, 255), rgb(0, 27, 135));
-            display: inline-flex;
-            align-self: flex-end;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            margin-right: 10px;
-            align-items: center;
-          }
-
-
-          #send-button {
-            padding: 10px;
-            border: none;
-            background-color: rgba(255, 255, 255, 0);
-            color: rgb(255, 255, 255);
-            cursor: pointer;
-            width: auto;
-            font-size: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            outline: none;
-          }
-
-          .typing-container {
-            display: inline-block;
-            word-wrap: break-word;
-            background-color: #6d8baa00;
-            padding: 5px;
-            color: #fff;
-            border-radius: 5px 15px 15px 15px;
-          }
-
-
-          #typing-message {
-            display: inline;
-            color: #959595;
-            margin-left: 8px;
-          }
-
-          #test-div {
-            text-align: end;
-            margin: 100px 20px;
-
-          }
-
-          /* Style for user speech bubble */
-          .user {
-            padding: 10px;
-            align-items: flex-end;
-          }
-
-          /* In your <style> tag or external CSS file */
-          body {
-            font-family: "Roboto", Arial, sans-serif;
-          }
-
-          /* Apply the font to specific elements */
-          #chat-header,
-          .message-text,
-          .response-text,
-          #message-input,
-          #call-form-inputs label,
-          #call-form-inputs input,
-          #call-form-inputs button {
-            font-family: "Roboto", Arial, sans-serif;
-          }
-
-          @keyframes dot-pulse-before {
-            0% {
-              box-shadow: 9984px 0 0 -5px;
-            }
-
-            30% {
-              box-shadow: 9984px 0 0 2px;
-            }
-
-            60%,
-            100% {
-              box-shadow: 9984px 0 0 -5px;
-            }
-          }
-
-          @keyframes dot-pulse {
-            0% {
-              box-shadow: 9999px 0 0 -5px;
-            }
-
-            30% {
-              box-shadow: 9999px 0 0 2px;
-            }
-
-            60%,
-            100% {
-              box-shadow: 9999px 0 0 -5px;
-            }
-          }
-
-          @keyframes dot-pulse-after {
-            0% {
-              box-shadow: 10014px 0 0 -5px;
-            }
-
-            30% {
-              box-shadow: 10014px 0 0 2px;
-            }
-
-            60%,
-            100% {
-              box-shadow: 10014px 0 0 -5px;
-            }
-          }
-
-
-          @keyframes spin {
-            0% {
-              transform: rotate(0deg);
-            }
-
-            100% {
-              transform: rotate(360deg);
-            }
-          }
-        </style>
-      </head>
-
-      <body>
-        <!-- Embeddable Chat Widget -->
-        <div id="chat-widget">
-          <div id="chat-circle">
-            <img src="https://cdn-icons-png.flaticon.com/512/6488/6488547.png" alt="Chat Icon" />
+        }
+      </style>
+    </head>
+    
+    <body>
+      <!-- Embeddable Chat Widget -->
+      <div id="chat-widget">
+        <div id="bounce-element">Have a question?</div>
+        <div id="chat-circle">
+          <img src="https://cdn-icons-png.flaticon.com/512/6488/6488547.png" alt="Chat Icon" />
+        </div>
+        <div id="chat-container" style="display: none;">
+          <div id="chat-header">
+            <div id="ai-name-container">
+              <div id="ai-initials">AI</div>
+              <div id="dynamic-name">AI Receptionist</div>
+            </div>
+            <span id="close-button">&times;</span>
           </div>
-          <div id="chat-container" style="display: none;">
-            <div id="chat-header">
-              <div id="ai-name-container">
-                <div id="ai-initials">AI</div>
-                <div id="dynamic-name">AI Receptionist</div>
-              </div>
-              <span id="close-button">&times;</span>
-            </div>
-            <div id="chat-messages">
-              <div id="typing-indicator" style="display: none;">
-                <div class="typing-container">
-                  <div class="dot-pulse"></div>
-                </div>
+          <div id="chat-messages">
+            <div id="typing-indicator" style="display: none;">
+              <div class="typing-container">
+                <div class="dot-pulse"></div>
               </div>
             </div>
-            <div id="book-cal-bg">
-              <button id="book-call-button">Talk to Person</button>
+          </div>
+          <div id="book-cal-bg">
+            <button id="book-call-button">Talk to Person</button>
+          </div>
+          <div id="call-booking-form" style="display: none;">
+            <div id="form-intro">
+              <h3>Want to talk to a person?</h3>
+              <p id="form-intro-text">Enter your contact information below and a representative will be with you shortly</p>
             </div>
-            <div id="call-booking-form" style="display: none;">
-              <div id="form-intro">
-                <h3>Want to talk to a person?</h3>
-                <p id="form-intro-text">Enter your contact information below and a representative will be with you shortly</p>
-              </div>
-              <form id="call-form-inputs">
-                <label for="name">Name:</label>
-                <input type="text" id="name" class="form-input" required>
-
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" class="form-input" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" class="form-input" required>
-
-                <button type="submit" id="form-submit">Submit</button>
-              </form>
-            </div>
-            <div id="chat-footer">
+            <form id="call-form-inputs">
+              <label for="name">Name:</label>
+              <input type="text" id="name" class="form-input" required>
+    
+              <label for="phone">Phone:</label>
+              <input type="tel" id="phone" class="form-input" required>
+    
+              <label for="email">Email:</label>
+              <input type="email" id="email" class="form-input" required>
+    
+              <button type="submit" id="form-submit">Submit</button>
+            </form>
+          </div>
+          <div id="chat-footer">
             <form id="message-form">
-              <input type="text" id="message-input" placeholder="Write Message" />
+              <!-- <input type="text" id="message-input" placeholder="Write Message" /> -->
+              <textarea id="text-area" placeholder="Ask anything..."></textarea>
               <button type="submit" id="send-button">Send</button>
             </form>
           </div>
+          <div id="omnibot-credits">
+            Powered by <a href="https://omnibotsystems.com" target="_blank">Omnibot</a>
           </div>
         </div>
+      </div>
 
       </body>
       
@@ -575,14 +656,14 @@ window.addEventListener('DOMContentLoaded', function () {
   const chatCircle = document.getElementById('chat-circle');
   const chatWidget = document.getElementById('chat-widget');
   const closeButton = document.getElementById('close-button');
-  const messageInput = document.getElementById('message-input');
+  const messageInput = document.getElementById('text-area');
   const sendButton = document.getElementById('send-button');
   const chatContainer = document.getElementById('chat-container');
   const chatMessages = document.getElementById('chat-messages');
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
-  const dynamicName = document.getElementById('dynamic-name');
+  const bounceElement = document.getElementById('bounce-element');
   const aiInitials = document.getElementById('ai-initials');
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
@@ -594,33 +675,33 @@ window.addEventListener('DOMContentLoaded', function () {
   dynamicName.innerText = chatName
   aiInitials.innerText = intials
 
+
   let sessionID;
 
   chatCircle.addEventListener('click', function () {
     chatContainer.style.display = 'flex';
-    chatContainer.style.zIndex = '1000000'
-    chatWidget.style.boxShadow = "0px 0 5px #9f9f9f";
+    chatWidget.style.border = "1px solid #E3E3E3";
     chatWidget.style.height = "90%";
     chatCircle.style.display = 'none';
-    // Check if session ID already exists in local storage
-    sessionID = localStorage.getItem('sessionID');
-    
+    bounceElement.style.display = 'none';
+    // Check if session ID already exists in session storage
+    sessionID = sessionStorage.getItem('sessionID');
+
     if (!sessionID) {
-        sessionID = generateUUID();
-        localStorage.setItem('sessionID', sessionID);
-        appendMessage("How can I help you today?", "url", 'response');
-    } else {
-        appendMessage("Welcome back, how can I help you today?", "url", 'response');
-    } 
+      sessionID = generateUUID();
+      sessionStorage.setItem('sessionID', sessionID);
+      appendMessage("How can I help you today?", "url", 'response');
+    }
 
     console.log('Session ID:', sessionID);
-});
+  });
 
   closeButton.addEventListener('click', function () {
     chatContainer.style.display = 'none';
     chatCircle.style.display = 'flex';
     chatWidget.style.boxShadow = "0px 0 0 #fff";
     chatWidget.style.height = "0";
+    chatWidget.style.border = "0 solid grey";
   });
 
   sendButton.addEventListener('click', function () {
@@ -650,9 +731,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const typingIndicator = document.createElement('div');
     typingIndicator.classList.add('message-container', 'response'); // Add classes for styling
     typingIndicator.innerHTML = `
-          <div class="response-avatar">${intials}</div>
           <div class="response-content">
-              <div class="message-label">${chatName}</div>
               <div class="response-text">
                   <div class="typing-container">
                       <div class="dot-pulse"></div>
@@ -668,10 +747,10 @@ window.addEventListener('DOMContentLoaded', function () {
     const payload = {
       query_text: message,
       index_name: "transcriptindex-index",
-      namespace_id: companyId,
-      layer_id: companyId,
+      namespace_id: "1roofsolution",
+      layer_id: "1roofsolution",
       session_id: sessionID,
-      company_type: categories
+      company_type: "Commercial and Residential Roofing"
     };
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {
@@ -699,8 +778,12 @@ window.addEventListener('DOMContentLoaded', function () {
         // Handle any errors that occur during the API request
         console.error('Error:', error);
         // Wait for 3 seconds
-        chatMessages.removeChild(typingIndicator);
-        appendMessage("I couldn't find the answer to that, is there anything else I can help you with?", "url", 'response');
+        setTimeout(function () {
+          // Your code to be executed after the delay
+          chatMessages.removeChild(typingIndicator);
+          appendMessage("Please ask again", "url", 'response');
+        }, 4000);
+        // Remove the typing indicator and append a default response
       });
   }
 
@@ -711,7 +794,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Create the message avatar element
     const avatarElement = document.createElement('div');
     avatarElement.classList.add('message-avatar');
-    avatarElement.textContent = type === 'user' ? 'G' : intials; // Use 'Guest' for user messages
+    avatarElement.textContent = type === 'user' ? 'G' : 'AI';
 
     // Create a container for label and message text
     const contentContainer = document.createElement('div');
@@ -720,10 +803,10 @@ window.addEventListener('DOMContentLoaded', function () {
     // Create the guest or AI label
     const labelElement = document.createElement('div');
     labelElement.classList.add('message-label');
-    labelElement.textContent = type === 'user' ? 'Guest' : chatName;
+    labelElement.textContent = type === 'user' ? 'Guest' : 'AI';
 
     // Append the label to the content container
-    contentContainer.appendChild(labelElement);
+    // contentContainer.appendChild(labelElement);
 
     // Create the message text element
     const messageElement = document.createElement('div');
@@ -738,14 +821,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // Append the avatar before or after the content container based on the message type
     if (type === 'user') {
-      messageContainer.appendChild(avatarElement);
+      // messageContainer.appendChild(avatarElement);
       contentContainer.classList.add('message-content'); // Add .message-content class for user messages
     } else {
-      messageContainer.insertBefore(avatarElement, contentContainer);
+      // messageContainer.insertBefore(avatarElement, contentContainer);
       contentContainer.classList.remove('message-content');
       contentContainer.classList.add('response-content'); // Add .response-content class for AI messages
-      avatarElement.classList.remove('message-avatar');
-      avatarElement.classList.add('response-avatar'); // Add .response-avatar class for AI messages
+      // avatarElement.classList.remove('message-avatar');
+      // avatarElement.classList.add('response-avatar'); // Add .response-avatar class for AI messages
       messageElement.classList.remove('message-text');
       messageElement.classList.add('response-text'); // Add .response-text class for AI messages
     }
@@ -770,10 +853,21 @@ window.addEventListener('DOMContentLoaded', function () {
   // Handle sending messages
   document.getElementById('message-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    const message = document.getElementById('message-input').value.trim();
+    const message = document.getElementById('text-area').value.trim();
     if (message !== '') {
       sendMessage(message); // Call your message sending function
-      document.getElementById('message-input').value = ''; // Clear the input
+      document.getElementById('text-area').value = ''; // Clear the input
+    }
+  });
+
+  document.getElementById('text-area').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      const message = document.getElementById('text-area').value.trim();
+      if (message !== '') {
+        sendMessage(message); // Call your message sending function
+        document.getElementById('text-area').value = ''; // Clear the input
+      }
     }
   });
 
@@ -788,9 +882,7 @@ window.addEventListener('DOMContentLoaded', function () {
       name_text: name,
       phone_text: phone,
       email_text: email,
-      session_id: sessionID,
-      namespace_id: companyId,
-      account_id: accountId
+      session_id: sessionID
     };
 
 

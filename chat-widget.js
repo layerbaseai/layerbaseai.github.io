@@ -674,7 +674,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
 
-  const gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
+  let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
   htmlElement.style.setProperty('--primaryGradient', gradientValue);
 

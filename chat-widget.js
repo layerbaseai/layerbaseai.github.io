@@ -635,9 +635,9 @@ window.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
 
-      </body>
-      
       <script src="/chat-widget.js"></script>
+
+      </body>
 
       </html>
       `;
@@ -665,6 +665,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const callFormInputs = document.getElementById('call-form-inputs');
   const bounceElement = document.getElementById('bounce-element');
   const aiInitials = document.getElementById('ai-initials');
+  const dynamicName = document.getElementById('dynamic-name')
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
   let categories = scriptTag.getAttribute('categories');
@@ -747,10 +748,10 @@ window.addEventListener('DOMContentLoaded', function () {
     const payload = {
       query_text: message,
       index_name: "transcriptindex-index",
-      namespace_id: "1roofsolution",
-      layer_id: "1roofsolution",
+      namespace_id: companyId,
+      layer_id: companyId,
       session_id: sessionID,
-      company_type: "Commercial and Residential Roofing"
+      company_type: categories
     };
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/lambda_chat', {
@@ -882,7 +883,9 @@ window.addEventListener('DOMContentLoaded', function () {
       name_text: name,
       phone_text: phone,
       email_text: email,
-      session_id: sessionID
+      session_id: sessionID,
+      namespace_id: companyId,
+      account_id: accountId
     };
 
 

@@ -32,7 +32,6 @@ window.addEventListener('DOMContentLoaded', function () {
           --semiBold: 600;
           --extraLight: 300;
           --italic: 300;
-          --primary: #1b2398;
         }
     
         /* 300;0,400;0,600;1,300 */
@@ -502,7 +501,7 @@ window.addEventListener('DOMContentLoaded', function () {
           position: absolute;
           bottom: -7px;
           transform: rotate(-135deg);
-          background: #1274E9;
+          background: var(--omnibotPrimary);
           right: 24px;
         }
     
@@ -677,6 +676,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
   htmlElement.style.setProperty('--omnibotPrimaryGradient', gradientValue);
+  htmlElement.style.setProperty('--omnibotPrimary', color2);
 
 
   dynamicName.innerText = chatName

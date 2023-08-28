@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', function () {
     
         *,
         html {
+          --primaryGradient: linear-gradient(93.12deg, #fff 0.52%, #1b2ae7 fff%);
           --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
           --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
           --light: 300;
@@ -675,7 +676,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let color2 = scriptTag.getAttribute('color2');
 
   // Change the value of the --primaryGradient variable
-  htmlElement.style.setProperty('--primaryGradient', `linear-gradient(93deg, ${color1}, ${color2})`);
+  htmlElement.style.setProperty('--primaryGradient', `linear-gradient(135deg, ${color1}, ${color2})`);
 
 
 

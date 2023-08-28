@@ -205,7 +205,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 5px;
           height: 5px;
           border-radius: 2.5px;
-          color: #0077ff;
+          color: #252525;
           box-shadow: 9999px 0 0 -5px;
           animation: dot-pulse 1.5s infinite linear;
           animation-delay: 0.25s;
@@ -221,7 +221,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 5px;
           height: 5px;
           border-radius: 2.5px;
-          color: #0077ff;
+          color: #252525;
         }
     
         .dot-pulse::before {

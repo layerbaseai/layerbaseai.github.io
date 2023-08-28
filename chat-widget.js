@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', function () {
         #book-call-button {
           align-self: flex-end;
           width: 50%;
-          background: var(--primaryGradient);
+          background: var(--omnibotPrimaryGradient);
           color: white;
           border: none;
           padding: 8px 12px;
@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     
         #call-form-inputs button {
-          background: var(--primaryGradient);
+          background: var(--omnibotPrimaryGradient);
           color: #fff;
           border: none;
           padding: 8px 12px;
@@ -135,7 +135,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background: var(--primaryGradient);
+          background: var(--omnibotPrimaryGradient);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', function () {
         /* New styles for Anna's name and AI image */
         #chat-header {
           padding: 10px;
-          /* background: var(--primaryGradient); */
+          /* background: var(--omnibotPrimaryGradient); */
           color: rgb(35, 35, 35);
           display: flex;
           align-items: center;
@@ -176,7 +176,7 @@ window.addEventListener('DOMContentLoaded', function () {
         /* New styles for Anna's name and AI image */
         #chat-footer {
           padding: 10px;
-          /* background: var(--primaryGradient); */
+          /* background: var(--omnibotPrimaryGradient); */
           border-top: 1px solid #E3E3E3;
         }
     
@@ -313,7 +313,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: var(--primaryGradient));
+          background: var(--omnibotPrimaryGradient));
           display: inline-flex;
           align-self: flex-end;
           justify-content: center;
@@ -326,7 +326,7 @@ window.addEventListener('DOMContentLoaded', function () {
     
         /* Adjusted styles for the message text */
         .message-text {
-          background: var(--primaryGradient);
+          background: var(--omnibotPrimaryGradient);
           color: #fff;
           max-width: 85%;
           border-radius: 10px;
@@ -376,7 +376,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     
         .response-text {
-          background: linear-gradient(white, white) padding-box, var(--primaryGradient) border-box;
+          background: linear-gradient(white, white) padding-box, var(--omnibotPrimaryGradient) border-box;
           border: 1px solid transparent;
           color: rgb(26, 26, 26);
           max-width: 85%;
@@ -394,7 +394,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: var(--primaryGradient));
+          background: var(--omnibotPrimaryGradient));
           display: inline-flex;
           align-self: flex-end;
           justify-content: center;
@@ -481,7 +481,7 @@ window.addEventListener('DOMContentLoaded', function () {
     
         #bounce-element {
           color: rgb(255, 255, 255);
-          background: var(--primaryGradient);
+          background: var(--omnibotPrimaryGradient);
           animation: bounce .3s ease-in-out 3;
           animation-delay: 2s;
           display: flex;
@@ -676,7 +676,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
-  htmlElement.style.setProperty('--primaryGradient', gradientValue);
+  htmlElement.style.setProperty('--omnibotPrimaryGradient', gradientValue);
 
 
   dynamicName.innerText = chatName

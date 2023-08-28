@@ -137,7 +137,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #0048ff, #01ccff);
+          background: var(--primaryGradient);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -315,7 +315,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: linear-gradient(135deg, rgb(0, 72, 255), rgb(1, 204, 255));
+          background: var(--primaryGradient));
           display: inline-flex;
           align-self: flex-end;
           justify-content: center;
@@ -378,7 +378,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     
         .response-text {
-          background: linear-gradient(white, white) padding-box, linear-gradient(135deg, rgb(0, 169, 255), rgb(1, 204, 255)) border-box;
+          background: linear-gradient(white, white) padding-box, var(--primaryGradient) border-box;
           border: 1px solid transparent;
           color: rgb(26, 26, 26);
           max-width: 85%;
@@ -396,7 +396,7 @@ window.addEventListener('DOMContentLoaded', function () {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: linear-gradient(135deg, rgb(23, 135, 255), rgb(0, 27, 135));
+          background: var(--primaryGradient));
           display: inline-flex;
           align-self: flex-end;
           justify-content: center;
@@ -483,7 +483,7 @@ window.addEventListener('DOMContentLoaded', function () {
     
         #bounce-element {
           color: rgb(255, 255, 255);
-          background: linear-gradient(135deg, rgb(0, 27, 135), rgb(23, 135, 255));
+          background: var(--primaryGradient);
           animation: bounce .3s ease-in-out 3;
           animation-delay: 2s;
           display: flex;
@@ -665,13 +665,21 @@ window.addEventListener('DOMContentLoaded', function () {
   const callFormInputs = document.getElementById('call-form-inputs');
   const bounceElement = document.getElementById('bounce-element');
   const aiInitials = document.getElementById('ai-initials');
-  const dynamicName = document.getElementById('dynamic-name')
+  const dynamicName = document.getElementById('dynamic-name');
+  const htmlElement = document.documentElement;
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
   let categories = scriptTag.getAttribute('categories');
   let chatName = scriptTag.getAttribute('chatName');
   let intials = scriptTag.getAttribute('intials');
   let accountId = scriptTag.getAttribute('accountId');
+  let color1 = scriptTag.getAttribute('color1');
+  let color2 = scriptTag.getAttribute('color2');
+
+  // Change the value of the --primaryGradient variable
+  htmlElement.style.setProperty('--primaryGradient', `linear-gradient(93deg, ${color1} 0.52%, ${color2})`);
+
+
 
   dynamicName.innerText = chatName
   aiInitials.innerText = intials

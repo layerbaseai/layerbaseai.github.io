@@ -671,7 +671,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let accountId = scriptTag.getAttribute('accountId');
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
-  let chatAvatarImg = scriptTag.getAttribute('chatAvatar');
+  let chatAvatarImg = scriptTag.getAttribute('chatAvatarImg');
 
   let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 

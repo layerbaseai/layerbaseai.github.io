@@ -18,8 +18,8 @@
 
     *,
     html {
-      --primaryGradient: linear-gradient(93deg, #1b2e98 0.52%, #1b2ae7 100%);
-      --secondaryGradient: linear-gradient(268deg, #1b2e98 -2.14%, #1b2ae7 99.69%);
+      --primaryGradient: linear-gradient(93.12deg, #1b2e98 0.52%, #1b2ae7 100%);
+      --secondaryGradient: linear-gradient(268.91deg, #1b2e98 -2.14%, #1b2ae7 99.69%);
       --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
       --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
       --light: 300;
@@ -44,7 +44,7 @@
       align-items: center;
     }
 
-    #ai-initials {
+    #chat-avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -198,7 +198,7 @@
       width: 5px;
       height: 5px;
       border-radius: 2.5px;
-      color: #252525;
+      color: #0077ff;
       box-shadow: 9999px 0 0 -5px;
       animation: dot-pulse 1.5s infinite linear;
       animation-delay: 0.25s;
@@ -482,7 +482,7 @@
       position: absolute;
       bottom: -7px;
       transform: rotate(-135deg);
-      background: #1274E9;
+      background: var(--primary);
       right: 24px;
     }
 
@@ -568,7 +568,7 @@
     <div id="chat-container" style="display: none;">
       <div id="chat-header">
         <div id="ai-name-container">
-          <div id="ai-initials">AI</div>
+          <img id="chat-avatar" src="https://a115450d611a5d9e5adccb79c5cdadc6.cdn.bubble.io/f1692125393551x158245438633071400/Omnibot%20Logo.002.jpeg?_gl=1*30gn33*_ga*MTExNjUxMjU3NC4xNjg5NzE2MDky*_ga_BFPVR2DEE2*MTY5MzMzMTcxNC43NS4xLjE2OTMzMzc3NTMuNjAuMC4w"/>
           <div id="dynamic-name">AI Receptionist</div>
         </div>
         <span id="close-button">&times;</span>

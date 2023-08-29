@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
           align-items: center;
         }
     
-        #ai-initials {
+        #chat-avatar {
           width: 40px;
           height: 40px;
           border-radius: 50%;
@@ -586,7 +586,7 @@ window.addEventListener('DOMContentLoaded', function () {
         <div id="chat-container" style="display: none;">
           <div id="chat-header">
             <div id="ai-name-container">
-              <div id="ai-initials">AI</div>
+              <img id="chat-avatar" src="https://a115450d611a5d9e5adccb79c5cdadc6.cdn.bubble.io/f1692125393551x158245438633071400/Omnibot%20Logo.002.jpeg?_gl=1*30gn33*_ga*MTExNjUxMjU3NC4xNjg5NzE2MDky*_ga_BFPVR2DEE2*MTY5MzMzMTcxNC43NS4xLjE2OTMzMzc3NTMuNjAuMC4w">
               <div id="dynamic-name">AI Receptionist</div>
             </div>
             <span id="close-button">&times;</span>
@@ -661,17 +661,17 @@ window.addEventListener('DOMContentLoaded', function () {
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
   const bounceElement = document.getElementById('bounce-element');
-  const aiInitials = document.getElementById('ai-initials');
+  const chatAvatar = document.getElementById('chat-avatar');
   const dynamicName = document.getElementById('dynamic-name');
   let htmlElement = document.documentElement;
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
   let categories = scriptTag.getAttribute('categories');
   let chatName = scriptTag.getAttribute('chatName');
-  let intials = scriptTag.getAttribute('intials');
   let accountId = scriptTag.getAttribute('accountId');
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
+  let chatAvatarImg = scriptTag.getAttribute('chatAvatar');
 
   let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
@@ -680,7 +680,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
   dynamicName.innerText = chatName
-  aiInitials.innerText = intials
+  chatAvatar.src = chatAvatarImg
 
 
   let sessionID;

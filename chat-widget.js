@@ -327,7 +327,7 @@ window.addEventListener('DOMContentLoaded', function () {
         .message-text {
           background: var(--omnibotPrimaryGradient);
           color: #fff;
-          max-width: 90%;
+          max-width: 95%;
           border-radius: 10px;
           padding: 14px 18px;
           display: inline-block;

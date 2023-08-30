@@ -894,6 +894,20 @@ window.addEventListener('DOMContentLoaded', function () {
       account_id: accountId
     };
 
+    const typingIndicatorSend = document.createElement('div');
+    typingIndicatorSend.classList.add('message-container', 'response'); // Add classes for styling
+    typingIndicatorSend.innerHTML = `
+          <div class="response-content">
+              <div class="response-text">
+                  <div class="typing-container">
+                      <div class="dot-pulse"></div>
+                  </div>
+              </div>
+          </div>
+          
+      `;
+    chatMessages.appendChild(typingIndicatorSend);
+
 
     fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/storeInfo', {
       method: 'POST',
@@ -906,11 +920,14 @@ window.addEventListener('DOMContentLoaded', function () {
       .then(data => {
         // Process the API response as needed
         console.log(data);
+        chatMessages.removeChild(typingIndicator);
 
         appendMessage("Thank you for your contact information, someone will reach out to you shortly. In the meantime is there anything else I can help with?", "url", 'response');
       })
       .catch(error => {
         // Handle any errors that occur during the API request
+        chatMessages.removeChild(typingIndicator);
+        appendMessage("We were unable to send your information. Please check you information is correct and submt again", "url", 'response');
         console.error('Error:', error);
       });
 

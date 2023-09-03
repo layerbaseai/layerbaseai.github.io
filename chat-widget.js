@@ -199,14 +199,14 @@ window.addEventListener('DOMContentLoaded', function () {
         .dot-pulse {
           position: relative;
           left: -9999px;
-          width: 5px;
-          height: 5px;
-          border-radius: 2.5px;
+          width: 3px;
+          height: 3px;
+          border-radius: 1.5px;
           color: #252525;
           box-shadow: 9999px 0 0 -5px;
           animation: dot-pulse 1.5s infinite linear;
           animation-delay: 0.25s;
-          margin: 0 20px 0 40px;
+          margin: 0 20px 0 20px;
         }
     
         .dot-pulse::before,
@@ -215,9 +215,9 @@ window.addEventListener('DOMContentLoaded', function () {
           display: inline-block;
           position: absolute;
           top: 0;
-          width: 5px;
-          height: 5px;
-          border-radius: 2.5px;
+          width: 3px;
+          height: 3px;
+          border-radius: 1.5px;
           color: #252525;
         }
     
@@ -920,13 +920,13 @@ window.addEventListener('DOMContentLoaded', function () {
       .then(data => {
         // Process the API response as needed
         console.log(data);
-        chatMessages.removeChild(typingIndicator);
+        chatMessages.removeChild(typingIndicatorSend);
 
         appendMessage("Thank you for your contact information, someone will reach out to you shortly. In the meantime is there anything else I can help with?", "url", 'response');
       })
       .catch(error => {
         // Handle any errors that occur during the API request
-        chatMessages.removeChild(typingIndicator);
+        chatMessages.removeChild(typingIndicatorSend);
         appendMessage("We were unable to send your information. Please check you information is correct and submt again", "url", 'response');
         console.error('Error:', error);
       });

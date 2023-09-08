@@ -672,6 +672,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
   let chatAvatarImg = scriptTag.getAttribute('chatAvatarImg');
+  let bookCallLocation = scriptTag.getAttribute('bookCallLink');
 
   let gradientValue = `linear-gradient(135deg, ${color1}, ${color2})`;
 
@@ -921,8 +922,15 @@ window.addEventListener('DOMContentLoaded', function () {
         // Process the API response as needed
         console.log(data);
         chatMessages.removeChild(typingIndicatorSend);
+        
+        appendMessage("Thank you for your contact information, I will now redirect you to a page where you can book a call with us. If you have any other questions I will always be here to help.", "url", 'response');
 
-        appendMessage("Thank you for your contact information, someone will reach out to you shortly. In the meantime is there anything else I can help with?", "url", 'response');
+
+        setTimeout(function () {
+          // Your code to be executed after the delay
+          window.location.href = bookCallLocation;
+        }, 4000);
+
       })
       .catch(error => {
         // Handle any errors that occur during the API request

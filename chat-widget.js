@@ -898,6 +898,7 @@ window.addEventListener('DOMContentLoaded', function () {
       function appendWords(index) {
         if (index < words.length) {
           messageElement.textContent += (index === 0 ? '' : ' ') + words[index];
+          chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the latest message
           setTimeout(() => {
             appendWords(index + 1);
           }, 100); // Adjust the delay as needed

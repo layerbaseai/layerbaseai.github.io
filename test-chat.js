@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function () {
         } else {
             messageInput.setAttribute("disabled", "disabled");
             termsAgreement.style.display = "flex"; // Show the termsAgreement element
-            termsAgreement.style. opacity = "1"; // Reset opacity if previously faded out
+            termsAgreement.style.opacity = "1"; // Reset opacity if previously faded out
         }
     });
 
@@ -135,7 +135,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 setTimeout(function () {
                     // Your code to be executed after the delay
                     chatMessages.removeChild(typingIndicator);
-                    appendMessage("Please ask again", "url", 'response');
+                    appendMessage("I want to test out how long this response will be. And I only want it once", "url", 'response');
                 }, 4000);
                 // Remove the typing indicator and append a default response
             });
@@ -165,7 +165,9 @@ window.addEventListener('DOMContentLoaded', function () {
         // Create the message text element
         const messageElement = document.createElement('div');
         messageElement.classList.add('message-text');
-        messageElement.textContent = message;
+        if (type === 'user') {
+            messageElement.textContent = message;
+        }
 
         // Append the message text to the content container
         contentContainer.appendChild(messageElement);
@@ -189,6 +191,26 @@ window.addEventListener('DOMContentLoaded', function () {
 
         // Apply the type-specific class for styling
         messageContainer.classList.add(type === 'response' ? 'response' : 'user');
+
+        // Check if the message is from AI and apply the streaming effect
+        if (type === 'response') {
+            // Split the message into words
+            const words = message.split(' ');
+
+            // Function to append words with a delay
+            function appendWords(index) {
+                if (index < words.length) {
+                    messageElement.textContent += (index === 0 ? '' : ' ') + words[index];
+                    setTimeout(() => {
+                        appendWords(index + 1);
+                    }, 100); // Adjust the delay as needed
+                }
+            }
+
+            // Start appending words
+            appendWords(0);
+        }
+
 
         chatMessages.appendChild(messageContainer);
         chatMessages.scrollTop = chatMessages.scrollHeight;

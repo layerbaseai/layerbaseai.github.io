@@ -643,7 +643,7 @@ window.addEventListener('DOMContentLoaded', function () {
             <div id="terms-agreement">
               <input type="checkbox" id="terms-checkbox">
               </input>
-              <p id="terms-text">I have read an agree to the terms and conditions</p>
+              <p id="terms-text">I have read an agree to the <a href="https://omnibotai.com/terms-and-conditions" target="_blank">terms and conditions</a></p>
             </div>
             <form id="message-form">
               <!-- <input type="text" id="message-input" placeholder="Write Message" /> -->
@@ -652,7 +652,7 @@ window.addEventListener('DOMContentLoaded', function () {
             </form>
           </div>
           <div id="omnibot-credits">
-            Powered by <a href="https://omnibotsystems.com" target="_blank">Omnibot</a>
+            Powered by <a href="https://omnibotai.com" target="_blank">Omnibot</a>
           </div>
         </div>
       </div>

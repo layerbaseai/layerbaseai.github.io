@@ -11,10 +11,26 @@ window.addEventListener('DOMContentLoaded', function () {
     const callBookingForm = document.getElementById('call-booking-form');
     const callFormInputs = document.getElementById('call-form-inputs');
     const bounceElement = document.getElementById('bounce-element');
+    const termsAgreement = document.getElementById('terms-agreement');
+    const termsCheckbox = document.getElementById('terms-checkbox');
 
     const avatar = "https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fa115450d611a5d9e5adccb79c5cdadc6.cdn.bubble.io%2Ff1692125393551x158245438633071400%2FOmnibot%2520Logo.002.jpeg?w=128&h=128&auto=compress&dpr=1&fit=max"
 
     let sessionID;
+
+    termsCheckbox.addEventListener("click", function () {
+        if (termsCheckbox.checked) {
+            messageInput.removeAttribute("disabled");
+            termsAgreement.style.opacity = "0"; // Set opacity to 0 to start the fade out
+            setTimeout(function () {
+                termsAgreement.style.display = "none";
+            }, 1000); // Set a timeout to hide the element after the fade out animation (500 milliseconds in this example)
+        } else {
+            messageInput.setAttribute("disabled", "disabled");
+            termsAgreement.style.display = "flex"; // Show the termsAgreement element
+            termsAgreement.style. opacity = "1"; // Reset opacity if previously faded out
+        }
+    });
 
     chatCircle.addEventListener('click', function () {
         chatContainer.style.display = 'flex';
@@ -24,12 +40,12 @@ window.addEventListener('DOMContentLoaded', function () {
         bounceElement.style.display = 'none';
         // Check if session ID already exists in session storage
         sessionID = sessionStorage.getItem('sessionID');
-        
+
         if (!sessionID) {
             sessionID = generateUUID();
             sessionStorage.setItem('sessionID', sessionID);
             appendMessage("How can I help you today?", "url", 'response');
-        } 
+        }
 
         console.log('Session ID:', sessionID);
     });
@@ -132,7 +148,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Create the message avatar element
         const avatarElement = document.createElement('div');
         avatarElement.classList.add('message-avatar');
-        avatarElement.textContent = type === 'user' ? 'G' : 'AI'; 
+        avatarElement.textContent = type === 'user' ? 'G' : 'AI';
 
         // Create a container for label and message text
         const contentContainer = document.createElement('div');
@@ -198,7 +214,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById('text-area').addEventListener('keydown', function(event) {        
+    document.getElementById('text-area').addEventListener('keydown', function (event) {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
             const message = document.getElementById('text-area').value.trim();

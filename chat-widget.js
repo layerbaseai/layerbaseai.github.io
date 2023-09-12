@@ -417,6 +417,26 @@ window.addEventListener('DOMContentLoaded', function () {
           margin: 10px 0;
           outline: none;
         }
+
+        #terms-agreement {
+          display: flex;
+          background: #f7f7f8;
+          text-align: center;
+          padding: 10px;
+          font-size: 11px;
+          color: #7d7c83;
+          border-radius: 5px;
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out; 
+        }
+    
+        #terms-checkbox {
+          margin: auto 0 auto auto;
+        }
+    
+        #terms-text {
+          margin: auto auto auto 20px;
+        }
     
         .typing-container {
           display: inline-block;
@@ -620,9 +640,14 @@ window.addEventListener('DOMContentLoaded', function () {
             </form>
           </div>
           <div id="chat-footer">
+            <div id="terms-agreement">
+              <input type="checkbox" id="terms-checkbox">
+              </input>
+              <p id="terms-text">I have read an agree to the terms and conditions</p>
+            </div>
             <form id="message-form">
               <!-- <input type="text" id="message-input" placeholder="Write Message" /> -->
-              <textarea id="text-area" placeholder="Ask anything..."></textarea>
+              <textarea id="text-area" placeholder="Ask anything..." Disabled></textarea>
               <button type="submit" id="send-button">Send</button>
             </form>
           </div>
@@ -663,6 +688,8 @@ window.addEventListener('DOMContentLoaded', function () {
   const bounceElement = document.getElementById('bounce-element');
   const chatAvatar = document.getElementById('chat-avatar');
   const dynamicName = document.getElementById('dynamic-name');
+  const termsAgreement = document.getElementById('terms-agreement');
+  const termsCheckbox = document.getElementById('terms-checkbox');
   let htmlElement = document.documentElement;
   let scriptTag = document.getElementById('chat-widget-script');
   let companyId = scriptTag.getAttribute('companyId');
@@ -685,6 +712,21 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
   let sessionID;
+  let termsAccept;
+
+  termsCheckbox.addEventListener("click", function () {
+    if (termsCheckbox.checked) {
+      messageInput.removeAttribute("disabled");
+      termsAgreement.style.opacity = "0"; // Set opacity to 0 to start the fade out
+      setTimeout(function () {
+        termsAgreement.style.display = "none";
+      }, 1000); // Set a timeout to hide the element after the fade out animation (500 milliseconds in this example)
+    } else {
+      messageInput.setAttribute("disabled", "disabled");
+      termsAgreement.style.display = "flex"; // Show the termsAgreement element
+      termsAgreement.style.opacity = "1"; // Reset opacity if previously faded out
+    }
+  });
 
   chatCircle.addEventListener('click', function () {
     chatContainer.style.display = 'flex';
@@ -694,6 +736,7 @@ window.addEventListener('DOMContentLoaded', function () {
     bounceElement.style.display = 'none';
     // Check if session ID already exists in session storage
     sessionID = sessionStorage.getItem('sessionID');
+    termsAccept = sessionStorage.getItem('termsAccept');
 
     if (!sessionID) {
       sessionID = generateUUID();
@@ -922,7 +965,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Process the API response as needed
         console.log(data);
         chatMessages.removeChild(typingIndicatorSend);
-        
+
         appendMessage("Thank you for your contact information, I will now redirect you to a page where you can book a call with us. If you have any other questions I will always be here to help.", "url", 'response');
 
 

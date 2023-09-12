@@ -399,6 +399,26 @@
       outline: none;
     }
 
+    #terms-agreement {
+      display: flex;
+      background: #f7f7f8;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      color: #7d7c83;
+      border-radius: 5px;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out; 
+    }
+
+    #terms-checkbox {
+      margin: auto 0 auto auto;
+    }
+
+    #terms-text {
+      margin: auto auto auto 20px;
+    }
+
     .typing-container {
       display: inline-block;
       word-wrap: break-word;
@@ -602,9 +622,14 @@
         </form>
       </div>
       <div id="chat-footer">
+        <div id="terms-agreement">
+          <input type="checkbox" id="terms-checkbox">
+          </input>
+          <p id="terms-text">I have read an agree to the terms and conditions</p>
+        </div>
         <form id="message-form">
           <!-- <input type="text" id="message-input" placeholder="Write Message" /> -->
-          <textarea id="text-area" placeholder="Ask anything..."></textarea>
+          <textarea id="text-area" placeholder="Ask anything..." disabled></textarea>
           <button type="submit" id="send-button">Send</button>
         </form>
       </div>

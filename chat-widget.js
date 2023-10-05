@@ -726,7 +726,6 @@ window.addEventListener('DOMContentLoaded', function () {
         console.log(data);
 
         // Remove the typing indicator
-        chatMessages.removeChild(typingIndicator);
         if (data.answer != "Pro") {
           plan = false
           callBookingForm.style.display = 'block';

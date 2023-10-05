@@ -711,6 +711,8 @@ window.addEventListener('DOMContentLoaded', function () {
     account_id: planID
   };
 
+  let plan = true;
+
   fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/tier_verification', {
       method: 'POST',
       headers: {
@@ -726,6 +728,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Remove the typing indicator
         chatMessages.removeChild(typingIndicator);
         if (data.answer != "Pro") {
+          plan = false
           callBookingForm.style.display = 'block';
           bookCallButton.disabled = true 
         }
@@ -767,6 +770,10 @@ window.addEventListener('DOMContentLoaded', function () {
     // Check if session ID already exists in session storage
     sessionID = sessionStorage.getItem('sessionID');
     termsAccept = sessionStorage.getItem('termsAccept');
+
+    if (!plan) {
+      console.log("on free plan")
+    }
 
     if (!sessionID) {
       sessionID = generateUUID();

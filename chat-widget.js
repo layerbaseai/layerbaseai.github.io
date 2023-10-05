@@ -682,6 +682,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const sendButton = document.getElementById('send-button');
   const chatContainer = document.getElementById('chat-container');
   const chatMessages = document.getElementById('chat-messages');
+  const chatFooter = document.getElementById('chat-footer');
   const bookCallButton = document.getElementById('book-call-button');
   const callBookingForm = document.getElementById('call-booking-form');
   const callFormInputs = document.getElementById('call-form-inputs');
@@ -730,7 +731,7 @@ window.addEventListener('DOMContentLoaded', function () {
           plan = false
           callBookingForm.style.display = 'block';
           bookCallButton.disabled = true 
-          messageInput.style.display = "none";
+          chatFooter.style.display = "none";
         }
       })
       .catch(error => {

@@ -730,6 +730,7 @@ window.addEventListener('DOMContentLoaded', function () {
           plan = false
           callBookingForm.style.display = 'block';
           bookCallButton.disabled = true 
+          messageInput.style.display = "none";
         }
       })
       .catch(error => {

@@ -708,7 +708,7 @@ window.addEventListener('DOMContentLoaded', function () {
   htmlElement.style.setProperty('--omnibotPrimary', color2);
   
   const tier_payload = {
-    account_id: accountId
+    account_id: planID
   };
 
   fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/tier_verification', {
@@ -725,7 +725,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
         // Remove the typing indicator
         chatMessages.removeChild(typingIndicator);
-        if (data.answer == false) {
+        if (data.answer != "Pro") {
           callBookingForm.style.display = 'block';
           bookCallButton.disabled = true 
         }

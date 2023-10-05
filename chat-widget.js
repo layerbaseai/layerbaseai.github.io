@@ -696,6 +696,7 @@ window.addEventListener('DOMContentLoaded', function () {
   let categories = scriptTag.getAttribute('categories');
   let chatName = scriptTag.getAttribute('chatName');
   let accountId = scriptTag.getAttribute('accountId');
+  let planID = scriptTag.getAttribute('planID');
   let color1 = scriptTag.getAttribute('color1');
   let color2 = scriptTag.getAttribute('color2');
   let chatAvatarImg = scriptTag.getAttribute('chatAvatarImg');
@@ -705,7 +706,36 @@ window.addEventListener('DOMContentLoaded', function () {
 
   htmlElement.style.setProperty('--omnibotPrimaryGradient', gradientValue);
   htmlElement.style.setProperty('--omnibotPrimary', color2);
+  
+  const tier_payload = {
+    account_id: accountId
+  };
 
+  fetch('https://jmohlmimz7.execute-api.us-east-1.amazonaws.com/tier_verification', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(tier_payload)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Process the API response as needed
+        console.log(data);
+
+        // Remove the typing indicator
+        chatMessages.removeChild(typingIndicator);
+        if (data.answer == false) {
+          callBookingForm.style.display = 'block';
+          bookCallButton.disabled = true 
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the API request
+        console.error('Error:', error);
+
+      });
+    
 
   dynamicName.innerText = chatName
   chatAvatar.src = chatAvatarImg
